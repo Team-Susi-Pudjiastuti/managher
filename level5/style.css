@@ -1,0 +1,53 @@
+.card-hover:hover{ transform: translateY(-6px); box-shadow: 0 12px 28px rgba(8,15,52,0.08) }
+    input:focus, select:focus, textarea:focus { outline: none; box-shadow: 0 6px 20px rgba(14,165,233,0.08); border-color: rgba(110,203,255,0.6) }
+    .grad-accent { background: linear-gradient(135deg,var(--accent1),var(--accent2)); color:white }
+    .anim-fade { transition: all .22s cubic-bezier(.2,.9,.3,1) }
+    
+    @media (max-width: 640px){
+      header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      .w-72 {
+        width: 100%;
+      }
+      .grid-cols-2 {
+        grid-template-columns: 1fr;
+      }
+      .action-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+    
+    .bmc-card {
+      min-height: 120px;
+      border-radius: 12px;
+      padding: 16px;
+      border: 2px solid;
+      transition: all 0.2s ease;
+    }
+    
+    .bmc-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    
+    .customer-segments { border-color: #ff6fa2; background-color: #fff0f5; }
+    .value-proposition { border-color: #ff8db8; background-color: #fff5f9; }
+    .channels { border-color: #6ecbff; background-color: #f0f9ff; }
+    .customer-relationships { border-color: #8ed1ff; background-color: #f5fbff; }
+    .revenue-streams { border-color: #3bb47d; background-color: #f0fdf4; }
+    .key-resources { border-color: #5dd195; background-color: #f5fef7; }
+    .key-activities { border-color: #f59e0b; background-color: #fffbeb; }
+    .key-partnerships { border-color: #fbbf24; background-color: #fffdf4; }
+    .cost-structure { border-color: #dc2626; background-color: #fef2f2; }
+    
+    .bmc-header {
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
