@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ManagHer — Dashboard</title>
+  <!--CSS-->
+  <link rel="stylesheet" href="..\template\style.css" class="css">
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Script js -->
+  <script src="../template/script.js" defer></script>  
+</head>
+<body class="min-h-screen">
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar fixed top-0 left-0 h-full bg-white border-r shadow-sm p-4 w-64 hidden lg:block">
+    <div class="flex items-center gap-3 mb-4">
+      <div id="brandLogo" class="w-12 h-12 rounded-xl grad-accent grid place-items-center text-lg font-extrabold shadow-md">MH</div>
+      <div class="leading-tight">
+        <div class="font-semibold">ManagHer</div>
+        <div class="text-xs text-slate-500">Solopreneur Journey</div>
+      </div>
+    </div>
+    <nav class="mt-2">
+      <ul class="space-y-1 text-sm">
+        <li>
+          <button class="w-full flex items-center gap-3 p-2 rounded-lg bg-slate-100 hover:bg-slate-100">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h18v4H3V3zM3 10h18v11H3V10z" /></svg>
+            <span class="menu-text">Dashboard</span>
+          </button>
+        </li>
+        <li>
+          <div>
+            <button id="homepageBtn" class="w-full flex items-center justify-between gap-3 p-2 rounded-lg hover:bg-slate-100" onclick="toggleHomepageSubmenu(); toggleMobileSidebar(false)">
+              <span class="flex items-center gap-3">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 10l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9z"/></svg>
+                <span class="menu-text">Homepage</span>
+              </span>
+              <svg id="homeArrow" class="w-4 h-4 transform transition-transform" viewBox="0 0 20 20"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </button>
+            <ul id="homepageSubmenu" class="ml-6 mt-2 space-y-1 text-xs hidden">
+              <li>
+                <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(1); toggleMobileSidebar(false)">
+                  Level 1: Ide Bisnis
+                </button>
+              </li>
+              <li>
+                <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(2); toggleMobileSidebar(false)">
+                  Level 2: Validasi Ide
+                </button>
+              </li>
+              <li>
+                <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(3); toggleMobileSidebar(false)">
+                  Level 3: Prototype
+                </button>
+              </li>
+              <li>
+                <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(4); toggleMobileSidebar(false)">
+                  Level 4: Action
+                </button>
+              </li>
+              <li>
+                <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(5); toggleMobileSidebar(false)">
+                  Level 5: Business Model Canvas
+                </button>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <a href="../Badges/index.html" class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100" onclick="showBadges()">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 2l3 7h7l-5.5 4.2L20 23l-8-5-8 5 3.5-9.8L2 9h7l3-7z"/></svg>
+            <span class="menu-text">Badges</span>
+          </a>
+        </li>
+        <li>
+          <button class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 text-red-600" onclick="logout()">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 16l4-4m0 0l-4-4m4 4H7"/></svg>
+            <span class="menu-text">Logout</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <div class="mt-auto pt-4 text-xs text-slate-500">
+      <div>v1.0 — Prototype</div>
+    </div>
+  </aside>
+  
+  <!-- Mobile Sidebar Toggle -->
+  <div class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b p-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <button id="mobileMenuBtn" class="p-2 border rounded-lg">
+        <svg class="w-5 h-5" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl grad-accent grid place-items-center text-white font-bold">MH</div>
+        <div>
+          <div class="text-lg font-semibold">ManagHer</div>
+          <div class="text-xs text-slate-500">Solopreneur Journey</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-xs text-slate-500">Dashboard</div>
+  </div>
+  
+  <!-- MAIN CONTENT -->
+  <div id="main" class="lg:ml-64 pt-16 lg:pt-6 p-6">
+    <!-- Header -->
+    <header class="flex items-start gap-6 mb-6">
+      <div class="flex-1">
+        <h1 class="text-2xl font-semibold">Dashboard</h1>
+        <p class="text-sm text-slate-500">Ringkasan perjalanan bisnis Anda</p>
+      </div>
+      <div class="w-72">
+        <div class="flex items-center justify-end gap-3 mb-2">
+          <!-- small progress -->
+          <div class="text-xs text-slate-500 mr-2">Progress</div>
+          <div class="w-40 bg-slate-100 rounded-full h-3 overflow-hidden">
+            <div id="globalBar" class="h-3 rounded-full grad-accent" style="width:80%"></div>
+          </div>
+          <div id="globalPct" class="text-sm font-medium ml-3">80%</div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Progress Cards per Level -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
+      <!-- Level 1: Ide Bisnis -->
+      <div class="level-card level-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold badge-dreamer">1</div>
+          <div>
+            <div class="font-semibold text-slate-800">Level 1: Ide Bisnis</div>
+            <div class="text-xs text-pink-600 font-semibold">🏆 Dreamer</div>
+          </div>
+        </div>
+        <div class="w-full bg-slate-200 rounded-full h-2 mb-3">
+          <div class="h-2 rounded-full bg-pink-500" style="width:100%"></div>
+        </div>
+        <div class="text-xs">Progress: 100%</div>
+        <div class="mt-3 text-sm">
+          <div class="font-medium">Ide Tersimpan: <span class="font-bold">5</span></div>
+          <div class="text-xs text-slate-600">Target pasar utama: Anak muda</div>
+        </div>
+      </div>
+      
+      <!-- Level 2: Validasi Ide -->
+      <div class="level-card level-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold badge-researcher">2</div>
+          <div>
+            <div class="font-semibold text-slate-800">Level 2: Validasi Ide</div>
+            <div class="text-xs text-blue-600 font-semibold">🏆 Researcher</div>
+          </div>
+        </div>
+        <div class="w-full bg-slate-200 rounded-full h-2 mb-3">
+          <div class="h-2 rounded-full bg-blue-500" style="width:90%"></div>
+        </div>
+        <div class="text-xs">Progress: 90%</div>
+        <div class="mt-3 text-sm">
+          <div class="font-medium">Responden: <span class="font-bold">12</span></div>
+          <div class="text-xs text-slate-600">Skala rata-rata: 4.2/5</div>
+        </div>
+      </div>
+      
+      <!-- Level 3: Prototype -->
+      <div class="level-card level-3">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold badge-creator">3</div>
+          <div>
+            <div class="font-semibold text-slate-800">Level 3: Prototype</div>
+            <div class="text-xs text-green-600 font-semibold">🏆 Creator</div>
+          </div>
+        </div>
+        <div class="w-full bg-slate-200 rounded-full h-2 mb-3">
+          <div class="h-2 rounded-full bg-green-500" style="width:75%"></div>
+        </div>
+        <div class="text-xs">Progress: 75%</div>
+        <div class="mt-3 text-sm">
+          <div class="font-medium">Prototype: <span class="font-bold">3</span></div>
+          <div class="text-xs text-slate-600">Feedback: 8/10 positif</div>
+        </div>
+      </div>
+      
+      <!-- Level 4: Action -->
+      <div class="level-card level-4">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold badge-bosslady">4</div>
+          <div>
+            <div class="font-semibold text-slate-800">Level 4: Action</div>
+            <div class="text-xs text-yellow-600 font-semibold">🏆 Boss Lady</div>
+          </div>
+        </div>
+        <div class="w-full bg-slate-200 rounded-full h-2 mb-3">
+          <div class="h-2 rounded-full bg-yellow-500" style="width:60%"></div>
+        </div>
+        <div class="text-xs">Progress: 60%</div>
+        <div class="mt-3 text-sm">
+          <div class="font-medium">Penjualan: <span class="font-bold">45</span></div>
+          <div class="text-xs text-slate-600">Penghasilan: Rp 2.250.000</div>
+        </div>
+      </div>
+      
+      <!-- Level 5: Business Model Canvas -->
+      <div class="level-card level-5">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold badge-strategist">5</div>
+          <div>
+            <div class="font-semibold lg:text-sm text-slate-800">Level 5: Business Model Canvas</div>
+            <div class="text-xs text-purple-600 font-semibold">🏆 Strategist</div>
+          </div>
+        </div>
+        <div class="w-full bg-slate-200 rounded-full h-2 mb-3">
+          <div class="h-2 rounded-full bg-purple-500" style="width:40%"></div>
+        </div>
+        <div class="text-xs">Progress: 40%</div>
+        <div class="mt-3 text-sm">
+          <div class="font-medium">BMC: <span class="font-bold">Draf</span></div>
+          <div class="text-xs text-slate-600">9/9 komponen diisi</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Tips & Trick -->
+    <div class="bg-white rounded-2xl p-6 card-hover border border-slate-100 mb-6">
+      <div class="flex justify-between items-start mb-4">
+        <div>
+          <h3 class="text-lg font-semibold">💡 Tips & Trick</h3>
+          <p class="text-sm text-slate-500 mt-1">Tips untuk memaksimalkan perjalanan bisnis Anda</p>
+        </div>
+        <div class="text-xs text-slate-400">Dashboard</div>
+      </div>
+      <ul class="mt-4 space-y-4">
+        <li class="flex items-start gap-3 p-3 bg-pink-50 rounded-lg">
+          <span class="text-pink-500 mt-1 text-xl">🚀</span>
+          <div>
+            <div class="font-medium text-slate-800">Mulai dari yang kecil</div>
+            <div class="text-sm text-slate-600">Fokus pada satu ide bisnis yang paling menjanjikan, uji dengan cepat, dan kembangkan secara bertahap.</div>
+          </div>
+        </li>
+        <li class="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+          <span class="text-blue-500 mt-1 text-xl">📊</span>
+          <div>
+            <div class="font-medium text-slate-800">Gunakan data untuk keputusan</div>
+            <div class="text-sm text-slate-600">Setiap keputusan bisnis sebaiknya didasarkan pada data, bukan hanya intuisi. Catat semua metrik penting.</div>
+          </div>
+        </li>
+        <li class="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+          <span class="text-green-500 mt-1 text-xl">🔄</span>
+          <div>
+            <div class="font-medium text-slate-800">Iterasi dan perbaikan</div>
+            <div class="text-sm text-slate-600">Jangan takut untuk mengubah atau menyempurnakan produk Anda berdasarkan feedback dari pelanggan.</div>
+          </div>
+        </li>
+        <li class="flex items-start gap-3 p-3 bg-yellow-50 rounded-lg">
+          <span class="text-yellow-500 mt-1 text-xl">🤝</span>
+          <div>
+            <div class="font-medium text-slate-800">Bangun komunitas</div>
+            <div class="text-sm text-slate-600">Pelanggan setia lebih berharga daripada pelanggan baru. Bangun hubungan jangka panjang dengan mereka.</div>
+          </div>
+        </li>
+        <li class="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
+          <span class="text-purple-500 mt-1 text-xl">📈</span>
+          <div>
+            <div class="font-medium text-slate-800">Rencanakan pertumbuhan</div>
+            <div class="text-sm text-slate-600">Setelah mencapai titik impas, fokus pada strategi pertumbuhan dan ekspansi bisnis Anda.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Dashboard -->
+    <div class="grid lg:grid-cols-2 gap-6 mb-6">
+      <!-- Revenue Chart -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-100">
+        <h3 class="text-lg font-semibold mb-4">📈 Penghasilan Bulanan</h3>
+        <canvas id="revenueChart" height="200"></canvas>
+        <div class="mt-4 flex justify-between text-sm">
+          <div>Total Penghasilan: <span class="font-bold">Rp 2.250.000</span></div>
+          <div class="text-green-600">↑ 25% dari bulan lalu</div>
+        </div>
+      </div>
+
+      <!-- Activity Timeline -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-100">
+        <h3 class="text-lg font-semibold mb-4">📅 Aktivitas Terbaru</h3>
+        <div class="space-y-4">
+          <div class="flex gap-3 p-3 bg-pink-50 rounded-lg">
+            <div class="w-2 h-2 rounded-full bg-pink-500 mt-2"></div>
+            <div>
+              <div class="font-medium text-slate-800">Ide Bisnis Baru</div>
+              <div class="text-sm text-slate-600">Fashion kecil-kecilan</div>
+              <div class="text-xs text-slate-500">2 hari yang lalu</div>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-blue-50 rounded-lg">
+            <div class="w-2 h-2 rounded-full bg-blue-500 mt-2"></div>
+            <div>
+              <div class="font-medium text-slate-800">Validasi Ide</div>
+              <div class="text-sm text-slate-600">12 responden memberikan feedback</div>
+              <div class="text-xs text-slate-500">5 hari yang lalu</div>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-green-50 rounded-lg">
+            <div class="w-2 h-2 rounded-full bg-green-500 mt-2"></div>
+            <div>
+              <div class="font-medium text-slate-800">Prototype Selesai</div>
+              <div class="text-sm text-slate-600">Logo dan brand identity</div>
+              <div class="text-xs text-slate-500">1 minggu yang lalu</div>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-yellow-50 rounded-lg">
+            <div class="w-2 h-2 rounded-full bg-yellow-500 mt-2"></div>
+            <div>
+              <div class="font-medium text-slate-800">Penjualan Pertama</div>
+              <div class="text-sm text-slate-600">15 produk terjual</div>
+              <div class="text-xs text-slate-500">2 minggu yang lalu</div>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-purple-50 rounded-lg">
+            <div class="w-2 h-2 rounded-full bg-purple-500 mt-2"></div>
+            <div>
+              <div class="font-medium text-slate-800">Business Model Canvas</div>
+              <div class="text-sm text-slate-600">Draft pertama selesai</div>
+              <div class="text-xs text-slate-500">3 minggu yang lalu</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Ringkasan -->
+    <div class="bg-white rounded-2xl p-6 border border-slate-100">
+      <h3 class="text-lg font-semibold mb-6">📋 Ringkasan </h3>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Total Revenue -->
+        <div class="text-center p-4 bg-gradient-to-br from-pink-50 to-blue-50 rounded-xl flex flex-col items-center justify-center">
+          <div class="text-2xl font-bold text-pink-600">Rp 2.250.000</div>
+          <div class="text-sm text-slate-600 mt-1">Total Penghasilan</div>
+          <div class="text-xs text-green-600 mt-1">↑ 25% dari bulan lalu</div>
+        </div>
+        
+        <!-- Total Products Sold -->
+        <div class="text-center p-4 bg-gradient-to-br from-green-50 to-teal-50 rounded-xl flex flex-col items-center justify-center">
+          <div class="text-3xl font-bold text-green-600">75</div>
+          <div class="text-sm text-slate-600 mt-1">Produk Terjual</div>
+          <div class="text-xs text-green-600 mt-1">↑ 15 dari bulan lalu</div>
+        </div>
+        
+        <!-- Net Profit -->
+        <div class="text-center p-4 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl flex flex-col items-center justify-center">
+          <div class="text-2xl font-bold text-orange-600">Rp 1.350.000</div>
+          <div class="text-sm text-slate-600 mt-1">Net Profit</div>
+          <div class="text-xs text-green-600 mt-1">Profit Margin 60%</div>
+        </div>
+        
+        <!-- Customer Satisfaction -->
+        <div class="text-center p-4 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl flex flex-col items-center justify-center">
+          <div class="text-3xl font-bold text-purple-600">4.3</div>
+          <div class="text-sm text-slate-600 mt-1">Kepuasan Pelanggan</div>
+          <div class="text-xs text-slate-500 mt-1">Dari 5.0 rating</div>
+        </div>
+      </div>
+      
+      <div class="mt-8 pt-6 border-t border-slate-200">
+        <h4 class="font-semibold mb-4">🏆 Pencapaian & Badges</h4>
+        <div class="flex flex-wrap gap-3">
+          <div class="px-4 py-2 rounded-full text-white font-semibold badge-dreamer">Dreamer</div>
+          <div class="px-4 py-2 rounded-full text-white font-semibold badge-researcher">Researcher</div>
+          <div class="px-4 py-2 rounded-full text-white font-semibold badge-creator">Creator</div>
+          <div class="px-4 py-2 rounded-full text-white font-semibold badge-bosslady">Boss Lady</div>
+          <div class="px-4 py-2 rounded-full text-white font-semibold badge-strategist">Strategist</div>
+        </div>
+      </div>
+      
+      <div class="mt-6 p-4 bg-slate-50 rounded-lg">
+        <h4 class="font-semibold mb-2">📈 Rekomendasi Selanjutnya</h4>
+        <p class="text-sm text-slate-600">
+          Fokus pada Level 5: Business Model Canvas untuk menyempurnakan model bisnis Anda. 
+          Setelah itu, pertimbangkan untuk mengembangkan strategi pemasaran yang lebih agresif 
+          dan mencari peluang ekspansi ke platform baru.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
