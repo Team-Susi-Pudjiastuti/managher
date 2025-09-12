@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ManagHer — Level 2: Validasi Ide</title>
+  <!--CSS-->
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- JS Global-->
+  <script src="..\template\script.js" defer></script>
+  <!-- JS -->
+  <script src="script.js" defer></script>
+
+</head>
+<body class="min-h-screen">
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar fixed top-0 left-0 h-full bg-white border-r shadow-sm p-4 w-64 hidden lg:block">
+    <div class="flex items-center gap-3 mb-4">
+      <div id="brandLogo" class="w-12 h-12 rounded-xl grad-accent grid place-items-center text-lg font-extrabold shadow-md">MH</div>
+      <div class="leading-tight">
+        <div class="font-semibold">ManagHer</div>
+        <div class="text-xs text-slate-500">Solopreneur Journey</div>
+      </div>
+    </div>
+    <nav class="mt-2">
+      <ul class="space-y-1 text-sm">
+        <li>
+          <a href="../Dashboard/index.html" class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h18v4H3V3zM3 10h18v11H3V10z" /></svg>
+            <span class="menu-text">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <div>
+            <button id="homepageBtn" class="w-full flex items-center justify-between gap-3 p-2 rounded-lg hover:bg-slate-100" onclick="toggleHomepageSubmenu(); toggleMobileSidebar(false)">
+              <span class="flex items-center gap-3">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 10l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9z"/></svg>
+                <span class="menu-text">Homepage</span>
+              </span>
+              <svg id="homeArrow" class="w-4 h-4 transform transition-transform" viewBox="0 0 20 20"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </button>
+            <ul id="homepageSubmenu" class="ml-6 mt-2 space-y-1 text-xs hidden">
+              <li>
+                <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(1); toggleMobileSidebar(false)">
+                  Level 1: Ide Bisnis
+                </button>
+              </li>
+              <li>
+                <button class="w-full text-left p-2 rounded-md bg-slate-100 :bg-slate-50" onclick="goToLevel(2); toggleMobileSidebar(false)">
+                  Level 2: Validasi Ide
+                </button>
+              </li>
+              <li>
+                <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(3); toggleMobileSidebar(false)">
+                  Level 3: Prototype
+                </button>
+              </li>
+              <li>
+                <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(4); toggleMobileSidebar(false)">
+                  Level 4: Action
+                </button>
+              </li>
+              <li>
+                <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(5); toggleMobileSidebar(false)">
+                  Level 5: Business Model Canvas
+                </button>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <a href="../Badges/index.html" class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100" onclick="showBadges()">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 2l3 7h7l-5.5 4.2L20 23l-8-5-8 5 3.5-9.8L2 9h7l3-7z"/></svg>
+            <span class="menu-text">Badges</span>
+          </a>
+        </li>
+        <li>
+          <button class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 text-red-600" onclick="logout()">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 16l4-4m0 0l-4-4m4 4H7"/></svg>
+            <span class="menu-text">Logout</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <div class="mt-auto pt-4 text-xs text-slate-500">
+      <div>v1.0 — Prototype</div>
+    </div>
+  </aside>
+  
+  <!-- Mobile Sidebar Toggle -->
+  <div class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b p-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <button id="mobileMenuBtn" class="p-2 border rounded-lg">
+        <svg class="w-5 h-5" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl grad-accent grid place-items-center text-white font-bold">MH</div>
+        <div>
+          <div class="text-lg font-semibold">ManagHer</div>
+          <div class="text-xs text-slate-500">Solopreneur Journey</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-xs text-slate-500">Dashboard</div>
+  </div>
+  
+  <!-- MAIN CONTENT -->
+  <div id="main" class="lg:ml-64 pt-16 lg:pt-6 p-6">
+    <!-- Header -->
+    <header class="flex items-start gap-6 mb-6">
+      <div class="flex-1">
+        <h1 class="text-2xl font-semibold">Level 2: Validasi Ide</h1>
+        <p class="text-sm text-slate-500">Validasi ide bisnis Anda dengan target pasar</p>
+      </div>
+      <div class="w-72">
+        <div class="flex items-center justify-end gap-3 mb-2">
+          <!-- small global progress -->
+          <div class="text-xs text-slate-500 mr-2">Progress</div>
+          <div class="w-40 bg-slate-100 rounded-full h-3 overflow-hidden">
+            <div id="globalBar" class="h-3 rounded-full grad-accent" style="width:50%"></div>
+          </div>
+          <div id="globalPct" class="text-sm font-medium ml-3">50%</div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Top area: Level Info + Tips & Trick -->
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+      <!-- Level Info Card -->
+      <div class="bg-white rounded-2xl p-6 card-hover border border-slate-100">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-lg">🎁</span>
+          <div class="text-xs text-pink-500 font-semibold">Level Info</div>
+        </div>
+        <h2 class="text-lg font-bold mt-1">Level 2: Validasi Ide</h2>
+        <div class="text-sm text-slate-600 mt-1">🏆 Badge "Researcher"</div>
+        <div class="mt-3 text-sm text-slate-700">🎁 Output: Target Market dan Dashboard Data Demografi Target Market</div>
+        
+        <!-- Navigation buttons -->
+        <div class="flex justify-between mt-6 pt-4 border-t">
+          <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90">
+            ← Prev
+          </button>
+          <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90">
+            Next →
+          </button>
+        </div>
+      </div>
+      
+      <!-- Tips & Trick Card -->
+      <div class="md:col-span-2 bg-white rounded-2xl p-6 card-hover border border-slate-100">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 class="text-lg font-semibold">💡 Tips & Trick</h3>
+            <p class="text-sm text-slate-500 mt-1">Tips untuk validasi ide bisnis Anda</p>
+          </div>
+          <div class="text-xs text-slate-400">Level 2</div>
+        </div>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-pink-500 mt-1">✨</span>
+            <span class="text-sm">Jelaskan secara singkat apa yang ingin Anda uji dari ide bisnis Anda.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-blue-500 mt-1">🎯</span>
+            <span class="text-sm">Gunakan pertanyaan terbuka untuk mendapatkan insight yang lebih kaya dan mendalam.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 mt-1">👥</span>
+            <span class="text-sm">Kumpulkan minimal 10 responden dengan latar belakang yang beragam.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-purple-500 mt-1">📊</span>
+            <span class="text-sm">Saring pola dari jawaban yang mirip untuk menemukan insight utama.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-orange-500 mt-1">🔄</span>
+            <span class="text-sm">Gunakan hasil validasi untuk mengubah atau menyempurnakan penawaran bisnis Anda.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Main Content Area -->
+    <div class="grid lg:grid-cols-2 gap-6 mb-6">
+      <!-- Form Section -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-100">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-xl font-semibold">📝 Form Validasi Ide</h3>
+          <div class="flex gap-2">
+            <button id="btnReset" class="px-3 py-1.5 text-sm rounded-lg bg-slate-200 hover:bg-slate-300 action-btn">
+              🔄 Reset
+            </button>
+            <button id="btnEdit" class="px-3 py-1.5 text-sm rounded-lg bg-blue-100 hover:bg-blue-200 text-blue-700 action-btn">
+              ✏️ Edit
+            </button>
+            <button id="btnSave" class="px-3 py-1.5 text-sm rounded-lg grad-accent text-white action-btn">
+              💾 Simpan
+            </button>
+          </div>
+        </div>
+        
+        <div class="space-y-5">
+          <!-- Jenis Kelamin -->
+          <div class="border-l-4 border-pink-500 pl-4">
+            <div class="flex items-center gap-2 mb-2">
+              <div class="w-6 h-6 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center text-xs font-bold">1</div>
+              <label class="text-sm font-medium">Jenis Kelamin</label>
+            </div>
+            <select id="jk" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-300">
+              <option value="">Pilih jenis kelamin...</option>
+              <option value="Perempuan">Perempuan</option>
+              <option value="Laki-laki">Laki-laki</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+          </div>
+          
+          <!-- Usia -->
+          <div class="border-l-4 border-blue-500 pl-4">
+            <div class="flex items-center gap-2 mb-2">
+              <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold">2</div>
+              <label class="text-sm font-medium">Usia</label>
+            </div>
+            <input type="number" id="usia" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-300" placeholder="Contoh: 25" min="13" max="80">
+          </div>
+          
+          <!-- Aktivitas Saat Ini -->
+          <div class="border-l-4 border-green-500 pl-4">
+            <div class="flex items-center gap-2 mb-2">
+              <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs font-bold">3</div>
+              <label class="text-sm font-medium">Aktivitas Saat Ini</label>
+            </div>
+            <input type="text" id="aktivitas" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-300" placeholder="Contoh: Mahasiswa, Pekerja Kantoran, Ibu Rumah Tangga">
+          </div>
+          
+          <!-- Skala Feedback Ide -->
+          <div class="border-l-4 border-purple-500 pl-4">
+            <div class="flex items-center gap-2 mb-2">
+              <div class="w-6 h-6 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs font-bold">4</div>
+              <label class="text-sm font-medium">Skala Feedback Ide (1-5)</label>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="flex-1">
+                <select id="skala" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-300">
+                  <option value="">Pilih skala...</option>
+                  <option value="1">1 - Sangat Tidak Tertarik</option>
+                  <option value="2">2 - Tidak Tertarik</option>
+                  <option value="3">3 - Netral</option>
+                  <option value="4">4 - Tertarik</option>
+                  <option value="5">5 - Sangat Tertarik</option>
+                </select>
+              </div>
+              <div class="text-2xl" id="skalaEmoji">💭</div>
+            </div>
+          </div>
+          
+          <!-- Penjelasan Feedback -->
+          <div class="border-l-4 border-orange-500 pl-4">
+            <div class="flex items-center gap-2 mb-2">
+              <div class="w-6 h-6 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs font-bold">5</div>
+              <label class="text-sm font-medium">Penjelasan Feedback</label>
+            </div>
+            <textarea id="penjelasan" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-300" rows="3" placeholder="Jelaskan secara singkat mengapa Anda memberikan skala tersebut..."></textarea>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Table Section -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-100">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-xl font-semibold">📋 Tabel Data Validasi</h3>
+          <div class="flex gap-2">
+            <button id="btnAddTable" class="px-3 py-1.5 text-sm rounded-lg grad-accent text-white action-btn">
+              ➕ Tambah Data
+            </button>
+          </div>
+        </div>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="bg-slate-50">
+                <th class="px-3 py-2 border text-left">Jenis Kelamin</th>
+                <th class="px-3 py-2 border text-left">Usia</th>
+                <th class="px-3 py-2 border text-left">Aktivitas</th>
+                <th class="px-3 py-2 border text-left">Skala</th>
+                <th class="px-3 py-2 border text-left">Feedback</th>
+                <th class="px-3 py-2 border text-left">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="validationTableBody">
+              <!-- Data will be populated here -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="mt-4 text-sm text-slate-500">
+          Total data validasi: <span id="totalValidationCount">0</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Dashboard Section -->
+    <div class="bg-white rounded-2xl p-6 border border-slate-100">
+      <h3 class="text-xl font-semibold mb-6">📊 Dashboard Hasil Validasi Ide</h3>
+      
+      <div class="dashboard-grid grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Chart 1: Distribusi Jenis Kelamin -->
+        <div class="bg-slate-50 p-4 rounded-lg">
+          <h4 class="text-sm font-semibold mb-3">Distribusi Jenis Kelamin</h4>
+          <canvas id="chartGender" height="200"></canvas>
+        </div>
+        
+        <!-- Chart 2: Distribusi Usia -->
+        <div class="bg-slate-50 p-4 rounded-lg">
+          <h4 class="text-sm font-semibold mb-3">Distribusi Usia</h4>
+          <canvas id="chartAge" height="200"></canvas>
+        </div>
+        
+        <!-- Chart 3: Distribusi Aktivitas -->
+        <div class="bg-slate-50 p-4 rounded-lg">
+          <h4 class="text-sm font-semibold mb-3">Distribusi Aktivitas</h4>
+          <canvas id="chartActivity" height="200"></canvas>
+        </div>
+        
+        <!-- Chart 4: Skala Feedback by Gender -->
+        <div class="bg-slate-50 p-4 rounded-lg">
+          <h4 class="text-sm font-semibold mb-3">Skala Feedback by Jenis Kelamin</h4>
+          <canvas id="chartScaleByGender" height="200"></canvas>
+        </div>
+        
+        <!-- Chart 5: Skala Feedback by Age -->
+        <div class="bg-slate-50 p-4 rounded-lg">
+          <h4 class="text-sm font-semibold mb-3">Skala Feedback by Usia</h4>
+          <canvas id="chartScaleByAge" height="200"></canvas>
+        </div>
+        
+        <!-- Chart 6: Skala Feedback by Activity -->
+        <div class="bg-slate-50 p-4 rounded-lg">
+          <h4 class="text-sm font-semibold mb-3">Skala Feedback by Aktivitas</h4>
+          <canvas id="chartScaleByActivity" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
