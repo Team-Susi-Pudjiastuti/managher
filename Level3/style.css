@@ -1,0 +1,100 @@
+.card-hover:hover{ transform: translateY(-6px); box-shadow: 0 12px 28px rgba(8,15,52,0.08) }
+    input:focus, select:focus, textarea:focus { outline: none; box-shadow: 0 6px 20px rgba(14,165,233,0.08); border-color: rgba(110,203,255,0.6) }
+    .grad-accent { background: linear-gradient(135deg,var(--accent1),var(--accent2)); color:white }
+    .anim-fade { transition: all .22s cubic-bezier(.2,.9,.3,1) }
+    
+    @media (max-width: 640px){
+      header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      .w-72 {
+        width: 100%;
+      }
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      .action-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+    
+    .prototype-preview {
+      background: linear-gradient(135deg, #f5f7ff 0%, #e6f0ff 100%);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .prototype-preview::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,111,162,0.1) 0%, rgba(255,111,162,0) 70%);
+      border-radius: 50%;
+    }
+    
+    .prototype-preview::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: -30px;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(110,203,255,0.1) 0%, rgba(110,203,255,0) 70%);
+      border-radius: 50%;
+    }
+    
+    .brand-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 24px;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+    
+    .feedback-scale {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .scale-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .scale-dot:hover {
+      transform: scale(1.1);
+    }
+    
+    .scale-dot.active {
+      transform: scale(1.2);
+      box-shadow: 0 0 0 3px rgba(110,203,255,0.3);
+    }

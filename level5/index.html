@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ManagHer — Level 5: Business Model Canvas</title>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!--CSS Global-->
+  <link rel="stylesheet" href="..\template\style.css" class="css">
+  <!--CSS-->
+  <link rel="stylesheet" href="style.css" class="css">
+  <!-- Script js Global -->
+   <script src="..\template\script.js" defer></script>
+   <!-- Script js -->
+   <script src="script.js" defer></script>
+</head>
+<body class="min-h-screen">
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar fixed top-0 left-0 h-full bg-white border-r shadow-sm p-4 w-64 hidden lg:block">
+        <div class="flex items-center gap-3 mb-4">
+        <div id="brandLogo" class="w-12 h-12 rounded-xl grad-accent grid place-items-center text-lg font-extrabold shadow-md">MH</div>
+        <div class="leading-tight">
+            <div class="font-semibold">ManagHer</div>
+            <div class="text-xs text-slate-500">Solopreneur Journey</div>
+        </div>
+        </div>
+        <nav class="mt-2">
+        <ul class="space-y-1 text-sm">
+            <li>
+            <a href="../Dashboard/index.html" class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100"
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h18v4H3V3zM3 10h18v11H3V10z" /></svg>
+                <span class="menu-text">Dashboard</span>
+            </a>
+            </li>
+            <li>
+            <div>
+                <button id="homepageBtn" class="w-full flex items-center justify-between gap-3 p-2 rounded-lg hover:bg-slate-50" onclick="toggleHomepageSubmenu(); toggleMobileSidebar(false)">
+                <span class="flex items-center gap-3">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 10l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9z"/></svg>
+                    <span class="menu-text">Homepage</span>
+                </span>
+                <svg id="homeArrow" class="w-4 h-4 transform transition-transform" viewBox="0 0 20 20"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                </button>
+                <ul id="homepageSubmenu" class="ml-6 mt-2 space-y-1 text-xs hidden">
+                <li>
+                    <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(1); toggleMobileSidebar(false)">
+                    Level 1: Ide Bisnis
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(2); toggleMobileSidebar(false)">
+                    Level 2: Validasi Ide
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(3); toggleMobileSidebar(false)">
+                    Level 3: Prototype
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(4); toggleMobileSidebar(false)">
+                    Level 4: Action
+                    </button>
+                </li>
+                <li>
+                    <button class="w-full text-left p-2 rounded-md bg-slate-100 hover:bg-slate-100" onclick="goToLevel(5); toggleMobileSidebar(false)">
+                    Level 5: Business Model Canvas
+                    </button>
+                </li>
+                </ul>
+            </div>
+            </li>
+            <li>
+            <a href="../Badges/index.html" class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100" onclick="showBadges()">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 2l3 7h7l-5.5 4.2L20 23l-8-5-8 5 3.5-9.8L2 9h7l3-7z"/></svg>
+                <span class="menu-text">Badges</span>
+            </a>
+            </li>
+            <li>
+            <button class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 text-red-600" onclick="logout()">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 16l4-4m0 0l-4-4m4 4H7"/></svg>
+                <span class="menu-text">Logout</span>
+            </button>
+            </li>
+        </ul>
+        </nav>
+        <div class="mt-auto pt-4 text-xs text-slate-500">
+        <div>v1.0 — Prototype</div>
+        </div>
+    </aside>
+  
+    <!-- Mobile Sidebar Toggle -->
+    <div class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b p-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="p-2 border rounded-lg">
+            <svg class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl grad-accent grid place-items-center text-white font-bold">MH</div>
+            <div>
+            <div class="text-lg font-semibold">ManagHer</div>
+            <div class="text-xs text-slate-500">Solopreneur Journey</div>
+            </div>
+        </div>
+        </div>
+        <div class="text-xs text-slate-500">Dashboard</div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main" class="lg:ml-64 pt-16 lg:pt-6 p-6">
+        <!-- Header -->
+        <header class="flex items-start gap-6 mb-6">
+        <div class="flex-1">
+            <h1 class="text-2xl font-semibold">Level 5: Business Model Canvas</h1>
+            <p class="text-sm text-slate-500">Susun model bisnis Anda secara komprehensif</p>
+        </div>
+        <div class="w-72">
+            <div class="flex items-center justify-end gap-3 mb-2">
+            <!-- small global progress -->
+            <div class="text-xs text-slate-500 mr-2">Progress</div>
+            <div class="w-40 bg-slate-100 rounded-full h-3 overflow-hidden">
+                <div id="globalBar" class="h-3 rounded-full grad-accent" style="width:100%"></div>
+            </div>
+            <div id="globalPct" class="text-sm font-medium ml-3">100%</div>
+            </div>
+        </div>
+        </header>
+
+        <!-- Top area: Level Info + Tips & Trick -->
+        <div class="grid md:grid-cols-3 gap-6 mb-6">
+            <!-- Level Info Card -->
+            <div class="bg-white rounded-2xl p-6 card-hover border border-slate-100">
+                <div class="flex items-center gap-2 mb-3">
+                <span class="text-lg">🎁</span>
+                <div class="text-xs text-pink-500 font-semibold">Level Info</div>
+                </div>
+                <h2 class="text-lg font-bold mt-1">Level 5: Business Model Canvas</h2>
+                <div class="text-sm text-slate-600 mt-1">🏆 Badge "Strategist"</div>
+                <div class="mt-3 text-sm text-slate-700">🎁 Output: Business Model Canvas Lengkap</div>
+                
+                <!-- Navigation buttons -->
+                <div class="flex justify-between mt-6 pt-4 border-t">
+                <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90">
+                    ← Prev
+                </button>
+                <button class="px-4 py-2 text-sm rounded-lg bg-slate-200 hover:bg-slate-300 opacity-50 cursor-not-allowed">
+                    Next
+                </button>
+                </div>
+            </div>
+            
+            <!-- Tips & Trick Card -->
+            <div class="md:col-span-2 bg-white rounded-2xl p-6 card-hover border border-slate-100">
+                <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h3 class="text-lg font-semibold">💡 Tips & Trick</h3>
+                    <p class="text-sm text-slate-500 mt-1">Tips untuk menyusun Business Model Canvas Anda</p>
+                </div>
+                <div class="text-xs text-slate-400">Level 5</div>
+                </div>
+                <ul class="mt-4 space-y-3">
+                <li class="flex items-start gap-3">
+                    <span class="text-pink-500 mt-1">🎯</span>
+                    <span class="text-sm">Definisikan Customer Segments Anda dengan spesifik - jangan terlalu luas.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-blue-500 mt-1">💎</span>
+                    <span class="text-sm">Value Proposition harus jelas dan unik - apa yang membuat Anda berbeda dari kompetitor?</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-green-500 mt-1">📱</span>
+                    <span class="text-sm">Pilih Channels yang paling efektif untuk menjangkau target pasar Anda.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-purple-500 mt-1">🤝</span>
+                    <span class="text-sm">Bangun Customer Relationships yang berkelanjutan, bukan hanya transaksional.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-orange-500 mt-1">💰</span>
+                    <span class="text-sm">Diversifikasi Revenue Streams untuk mengurangi risiko ketergantungan pada satu sumber pendapatan.</span>
+                </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Business Model Canvas Form -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-100 mb-6">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-semibold">📝 Form Business Model Canvas</h3>
+            <div class="flex gap-2">
+            <button id="btnReset" class="px-3 py-1.5 text-sm rounded-lg bg-slate-200 hover:bg-slate-300 action-btn">
+                🔄 Reset
+            </button>
+            <button id="btnEdit" class="px-3 py-1.5 text-sm rounded-lg bg-blue-100 hover:bg-blue-200 text-blue-700 action-btn">
+                ✏️ Edit
+            </button>
+            <button id="btnSave" class="px-3 py-1.5 text-sm rounded-lg grad-accent text-white action-btn">
+                💾 Simpan
+            </button>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Left Column -->
+            <div class="space-y-4">
+            <!-- Customer Segments -->
+            <div class="border-l-4 border-pink-500 pl-4">
+                <label class="text-sm font-medium mb-2 block">Customer Segments (Siapa pelanggan Anda?)</label>
+                <textarea id="customerSegments" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-300" rows="3" placeholder="Contoh: Wanita usia 18-35 tahun, mahasiswa, pekerja kantoran muda yang peduli fashion dan budget-friendly"></textarea>
+            </div>
+            
+            <!-- Value Proposition -->
+            <div class="border-l-4 border-pink-500 pl-4">
+                <label class="text-sm font-medium mb-2 block">Value Proposition (Nilai yang ditawarkan)</label>
+                <textarea id="valueProposition" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-300" rows="3" placeholder="Contoh: Produk fashion stylish dengan harga terjangkau, kualitas premium, dan pengiriman cepat"></textarea>
+            </div>
+            
+            <!-- Channels -->
+            <div class="border-l-4 border-blue-500 pl-4">
+                <label class="text-sm font-medium mb-2 block">Channels (Saluran distribusi)</label>
+                <textarea id="channels" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-300" rows="3" placeholder="Contoh: Instagram Shop, Tokopedia, WhatsApp Order, Pop-up Market"></textarea>
+            </div>
+            
+            <!-- Customer Relationships -->
+            <div class="border-l-4 border-blue-500 pl-4">
+                <label class="text-sm font-medium mb-2 block">Customer Relationships (Hubungan dengan pelanggan)</label>
+                <textarea id="customerRelationships" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-300" rows="3" placeholder="Contoh: Layanan pelanggan 24 jam, program loyalitas, komunitas eksklusif, personalisasi produk"></textarea>
+            </div>
+            
+            <!-- Revenue Streams -->
+            <div class="border-l-4 border-green-500 pl-4">
+                <label class="text-sm font-medium mb-2 block">Revenue Streams (Sumber pendapatan)</label>
+                <textarea id="revenueStreams" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-300" rows="3" placeholder="Contoh: Penjualan produk, membership premium, jasa konsultasi, affiliate marketing"></textarea>
+            </div>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="space-y-4">
+            <!-- Key Resources -->
+            <div class="border-l-4 border-green-500 pl-4">
+                <label class="text-sm font-medium mb-2 block">Key Resources (Sumber daya utama)</label>
+                <textarea id="keyResources" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-red-300" rows="3" placeholder="Contoh: Tim desain, supplier bahan berkualitas, sistem manajemen inventori, brand awareness"></textarea>
+            </div>
+            
+            <!-- Key Activities -->
+            <div class="border-l-4 border-orange-500 pl-4">
+                <label class="text-sm font-medium mb-2 block">Key Activities (Aktivitas utama)</label>
+                <textarea id="keyActivities" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-yellow-300" rows="3" placeholder="Contoh: Desain produk, produksi, marketing digital, customer service, pengembangan produk"></textarea>
+            </div>
+            
+            <!-- Key Partnerships -->
+            <div class="border-l-4 border-orange-500 pl-4">
+                <label class="text-sm font-medium mb-2 block">Key Partnerships (Mitra utama)</label>
+                <textarea id="keyPartnerships" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-300" rows="3" placeholder="Contoh: Supplier bahan baku, jasa pengiriman, influencer, platform e-commerce"></textarea>
+            </div>
+            
+            <!-- Cost Structure -->
+            <div class="border-l-4 border-red-500 pl-4">
+                <label class="text-sm font-medium mb-2 block">Cost Structure (Struktur biaya)</label>
+                <textarea id="costStructure" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-teal-300" rows="3" placeholder="Contoh: Biaya produksi, marketing, operasional, SDM, teknologi, logistik"></textarea>
+            </div>
+            
+            <!-- Notes -->
+            <div class="border-l-4 border-red-500 pl-4">
+                <label class="text-sm font-medium mb-2 block">Catatan Tambahan</label>
+                <textarea id="notes" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-slate-300" rows="3" placeholder="Catatan khusus tentang Business Model Canvas Anda..."></textarea>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Business Model Canvas Preview -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-100">
+        
+        <!-- Business Model Canvas Grid -->
+        <div class="grid grid-cols-3 gap-4 mb-6">
+            <div class="col-span-3 bg-gradient-to-r from-pink-500 to-blue-500 rounded-lg p-6 text-white text-center">
+            <div class="text-2xl font-bold mb-2">Business Model Canvas</div>
+            <div class="text-sm opacity-90">Model bisnis Anda dalam satu halaman</div>
+            </div>
+            
+            <!-- Row 1 -->
+            <div class="bmc-card customer-segments">
+            <div class="bmc-header">
+                <span class="text-pink-500">👥</span>
+                <span>Customer Segments</span>
+            </div>
+            <div id="previewCustomerSegments" class="text-sm">Belum ada data</div>
+            </div>
+            
+            <div class="bmc-card value-proposition">
+            <div class="bmc-header">
+                <span class="text-blue-500">💎</span>
+                <span>Value Proposition</span>
+            </div>
+            <div id="previewValueProposition" class="text-sm">Belum ada data</div>
+            </div>
+            
+            <div class="bmc-card customer-relationships">
+            <div class="bmc-header">
+                <span class="text-purple-500">🤝</span>
+                <span>Customer Relationships</span>
+            </div>
+            <div id="previewCustomerRelationships" class="text-sm">Belum ada data</div>
+            </div>
+            
+            <!-- Row 2 -->
+            <div class="bmc-card channels">
+            <div class="bmc-header">
+                <span class="text-green-500">📱</span>
+                <span>Channels</span>
+            </div>
+            <div id="previewChannels" class="text-sm">Belum ada data</div>
+            </div>
+            
+            <div class="bmc-card key-partnerships">
+            <div class="bmc-header">
+                <span class="text-yellow-500">🤝</span>
+                <span>Key Partnerships</span>
+            </div>
+            <div id="previewKeyPartnerships" class="text-sm">Belum ada data</div>
+            </div>
+            
+            <div class="bmc-card key-activities">
+            <div class="bmc-header">
+                <span class="text-orange-500">🚀</span>
+                <span>Key Activities</span>
+            </div>
+            <div id="previewKeyActivities" class="text-sm">Belum ada data</div>
+            </div>
+            
+            <!-- Row 3 -->
+            <div class="bmc-card key-resources">
+            <div class="bmc-header">
+                <span class="text-teal-500">🛠️</span>
+                <span>Key Resources</span>
+            </div>
+            <div id="previewKeyResources" class="text-sm">Belum ada data</div>
+            </div>
+
+            <div class="bmc-card cost-structure">
+            <div class="bmc-header">
+                <span class="text-red-500">💰</span>
+                <span>Cost Structure</span>
+            </div>
+            <div id="previewCostStructure" class="text-sm">Belum ada data</div>
+            </div>
+            
+            <div class="bmc-card revenue-streams">
+            <div class="bmc-header">
+                <span class="text-green-500">💸</span>
+                <span>Revenue Streams</span>
+            </div>
+            <div id="previewRevenueStreams" class="text-sm">Belum ada data</div>
+            </div>
+        </div>
+        
+        <!-- Download and Share Options -->
+        <div class="flex flex-wrap gap-4 mt-6">
+            <button id="btnDownloadPDF" class="px-4 py-2 text-sm rounded-lg grad-accent text-white">
+            📄 Download as PDF
+            </button>
+            <button id="btnShare" class="px-4 py-2 text-sm rounded-lg bg-blue-100 hover:bg-blue-200 text-blue-700">
+            📤 Share Canvas
+            </button>
+            <button id="btnPrint" class="px-4 py-2 text-sm rounded-lg bg-green-100 hover:bg-green-200 text-green-700">
+            🖨️ Print Canvas
+            </button>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
