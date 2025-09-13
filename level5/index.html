@@ -110,7 +110,7 @@
     </div>
 
     <!-- MAIN CONTENT -->
-    <div id="main" class="lg:ml-64 pt-16 lg:pt-6 p-6">
+    <div id="main" class="lg:ml-64 pt-16 lg:pt-6 p-6 lg:mt-0 mt-10">
         <!-- Header -->
         <header class="flex items-start gap-6 mb-6">
         <div class="flex-1">
@@ -273,88 +273,89 @@
         </div>
 
         <!-- Business Model Canvas Preview -->
-        <div class="bg-white rounded-2xl p-6 border border-slate-100">
+        <div class="bg-white rounded-2xl p-6 border border-slate-100 ">
         
         <!-- Business Model Canvas Grid -->
-        <div class="grid grid-cols-3 gap-4 mb-6">
-            <div class="col-span-3 bg-gradient-to-r from-pink-500 to-blue-500 rounded-lg p-6 text-white text-center">
-            <div class="text-2xl font-bold mb-2">Business Model Canvas</div>
-            <div class="text-sm opacity-90">Model bisnis Anda dalam satu halaman</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            <!-- Header -->
+            <div class="col-span-1 md:col-span-2 lg:col-span-3 bg-gradient-to-r from-pink-500 to-blue-500 rounded-lg p-4 md:p-6 text-white text-center">
+                <div class="text-xl md:text-2xl font-bold mb-1">Business Model Canvas</div>
+                <div class="text-xs md:text-sm opacity-90">Model bisnis Anda dalam satu halaman</div>
             </div>
-            
+
             <!-- Row 1 -->
             <div class="bmc-card customer-segments">
-            <div class="bmc-header">
-                <span class="text-pink-500">👥</span>
-                <span>Customer Segments</span>
+                <div class="bmc-header flex items-center gap-2">
+                    <span class="text-pink-500 text-lg">👥</span>
+                    <span class="text-xs md:text-sm font-medium">Customer Segments</span>
+                </div>
+                <div id="previewCustomerSegments" class="text-xs mt-1">Belum ada data</div>
             </div>
-            <div id="previewCustomerSegments" class="text-sm">Belum ada data</div>
-            </div>
-            
+
             <div class="bmc-card value-proposition">
-            <div class="bmc-header">
-                <span class="text-blue-500">💎</span>
-                <span>Value Proposition</span>
+                <div class="bmc-header flex items-center gap-2">
+                    <span class="text-blue-500 text-lg">💎</span>
+                    <span class="text-xs md:text-sm font-medium">Value Proposition</span>
+                </div>
+                <div id="previewValueProposition" class="text-xs mt-1">Belum ada data</div>
             </div>
-            <div id="previewValueProposition" class="text-sm">Belum ada data</div>
-            </div>
-            
+
             <div class="bmc-card customer-relationships">
-            <div class="bmc-header">
-                <span class="text-purple-500">🤝</span>
-                <span>Customer Relationships</span>
+                <div class="bmc-header flex items-center gap-2">
+                    <span class="text-purple-500 text-lg">🤝</span>
+                    <span class="text-xs md:text-sm font-medium">Customer Relationships</span>
+                </div>
+                <div id="previewCustomerRelationships" class="text-xs mt-1">Belum ada data</div>
             </div>
-            <div id="previewCustomerRelationships" class="text-sm">Belum ada data</div>
-            </div>
-            
+
             <!-- Row 2 -->
             <div class="bmc-card channels">
-            <div class="bmc-header">
-                <span class="text-green-500">📱</span>
-                <span>Channels</span>
+                <div class="bmc-header flex items-center gap-2">
+                    <span class="text-green-500 text-lg">📱</span>
+                    <span class="text-xs md:text-sm font-medium">Channels</span>
+                </div>
+                <div id="previewChannels" class="text-xs mt-1">Belum ada data</div>
             </div>
-            <div id="previewChannels" class="text-sm">Belum ada data</div>
-            </div>
-            
+
             <div class="bmc-card key-partnerships">
-            <div class="bmc-header">
-                <span class="text-yellow-500">🤝</span>
-                <span>Key Partnerships</span>
+                <div class="bmc-header flex items-center gap-2">
+                    <span class="text-yellow-500 text-lg">🤝</span>
+                    <span class="text-xs md:text-sm font-medium">Key Partnerships</span>
+                </div>
+                <div id="previewKeyPartnerships" class="text-xs mt-1">Belum ada data</div>
             </div>
-            <div id="previewKeyPartnerships" class="text-sm">Belum ada data</div>
-            </div>
-            
+
             <div class="bmc-card key-activities">
-            <div class="bmc-header">
-                <span class="text-orange-500">🚀</span>
-                <span>Key Activities</span>
+                <div class="bmc-header flex items-center gap-2">
+                    <span class="text-orange-500 text-lg">🚀</span>
+                    <span class="text-xs md:text-sm font-medium">Key Activities</span>
+                </div>
+                <div id="previewKeyActivities" class="text-xs mt-1">Belum ada data</div>
             </div>
-            <div id="previewKeyActivities" class="text-sm">Belum ada data</div>
-            </div>
-            
+
             <!-- Row 3 -->
             <div class="bmc-card key-resources">
-            <div class="bmc-header">
-                <span class="text-teal-500">🛠️</span>
-                <span>Key Resources</span>
-            </div>
-            <div id="previewKeyResources" class="text-sm">Belum ada data</div>
+                <div class="bmc-header flex items-center gap-2">
+                    <span class="text-teal-500 text-lg">🛠️</span>
+                    <span class="text-xs md:text-sm font-medium">Key Resources</span>
+                </div>
+                <div id="previewKeyResources" class="text-xs mt-1">Belum ada data</div>
             </div>
 
             <div class="bmc-card cost-structure">
-            <div class="bmc-header">
-                <span class="text-red-500">💰</span>
-                <span>Cost Structure</span>
+                <div class="bmc-header flex items-center gap-2">
+                    <span class="text-red-500 text-lg">💰</span>
+                    <span class="text-xs md:text-sm font-medium">Cost Structure</span>
+                </div>
+                <div id="previewCostStructure" class="text-xs mt-1">Belum ada data</div>
             </div>
-            <div id="previewCostStructure" class="text-sm">Belum ada data</div>
-            </div>
-            
+
             <div class="bmc-card revenue-streams">
-            <div class="bmc-header">
-                <span class="text-green-500">💸</span>
-                <span>Revenue Streams</span>
-            </div>
-            <div id="previewRevenueStreams" class="text-sm">Belum ada data</div>
+                <div class="bmc-header flex items-center gap-2">
+                    <span class="text-green-500 text-lg">💸</span>
+                    <span class="text-xs md:text-sm font-medium">Revenue Streams</span>
+                </div>
+                <div id="previewRevenueStreams" class="text-xs mt-1">Belum ada data</div>
             </div>
         </div>
         
