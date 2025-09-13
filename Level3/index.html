@@ -12,7 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- Script js global -->
   <script src="..\template\script.js" defer></script>
-<!-- Script js  -->
+  <!-- Script js  -->
   <script src="script.js" defer></script>
   
 
@@ -111,9 +111,9 @@
     <div class="text-xs text-slate-500">Dashboard</div>
   </div>
   
+  
   <!-- MAIN CONTENT -->
-  <!-- MAIN CONTENT -->
-  <div id="main" class="lg:ml-64 pt-16 lg:pt-6 p-6">
+  <div id="main" class="lg:ml-64 pt-16 lg:pt-6 p-6 lg:mt-0 mt-10">
     <!-- Header -->
     <header class="flex items-start gap-6 mb-6">
       <div class="flex-1">
@@ -320,94 +320,95 @@
       </div>
     </div>
     
+    
     <!-- Feedback Prototype Section -->
-    <div class="bg-white rounded-2xl p-6 border border-slate-100 mb-6">
-      <h3 class="text-xl font-semibold mb-6">📋 Feedback Prototype</h3>
-      
-      <div class="grid lg:grid-cols-2 gap-6">
+    <div class="bg-white rounded-2xl p-4 border border-slate-100 mb-6">
+      <h3 class="text-lg font-semibold mb-4">📋 Feedback Prototype</h3>
+
+      <div class="grid grid-cols-1 gap-4">
         <!-- Feedback Form -->
         <div>
-          <div class="flex items-center justify-between mb-4">
-            <h4 class="text-lg font-semibold">Form Feedback</h4>
-            <div class="flex gap-2">
-              <button id="btnResetFeedback" class="px-3 py-1.5 text-sm rounded-lg bg-slate-200 hover:bg-slate-300 action-btn">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-base font-semibold">Form Feedback</h4>
+            <div class="flex gap-1">
+              <button id="btnResetFeedback" class="px-2 py-1 text-xs rounded-lg bg-slate-200 hover:bg-slate-300 action-btn">
                 🔄 Reset
               </button>
-              <button id="btnSaveFeedback" class="px-3 py-1.5 text-sm rounded-lg grad-accent text-white action-btn">
+              <button id="btnSaveFeedback" class="px-2 py-1 text-xs rounded-lg grad-accent text-white action-btn">
                 💾 Simpan
               </button>
             </div>
           </div>
-          
-          <div class="space-y-4">
+
+          <div class="space-y-3">
             <!-- Jenis Kelamin -->
             <div>
-              <label class="text-sm font-medium mb-2 block">Jenis Kelamin</label>
-              <select id="feedbackJk" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-300">
+              <label class="text-xs font-medium mb-1 block">Jenis Kelamin</label>
+              <select id="feedbackJk" class="w-full p-3 text-sm border rounded-lg focus:ring-2 focus:ring-blue-300">
                 <option value="">Pilih jenis kelamin...</option>
                 <option value="Perempuan">Perempuan</option>
                 <option value="Laki-laki">Laki-laki</option>
                 <option value="Lainnya">Lainnya</option>
               </select>
             </div>
-            
+
             <!-- Usia -->
             <div>
-              <label class="text-sm font-medium mb-2 block">Usia</label>
-              <input type="number" id="feedbackUsia" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-300" placeholder="Contoh: 25" min="13" max="80">
+              <label class="text-xs font-medium mb-1 block">Usia</label>
+              <input type="number" id="feedbackUsia" class="w-full p-3 text-sm border rounded-lg focus:ring-2 focus:ring-green-300" placeholder="Contoh: 25" min="13" max="80">
             </div>
-            
+
             <!-- Aktivitas Saat Ini -->
             <div>
-              <label class="text-sm font-medium mb-2 block">Aktivitas Saat Ini</label>
-              <input type="text" id="feedbackAktivitas" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-300" placeholder="Contoh: Mahasiswa, Pekerja Kantoran, Ibu Rumah Tangga">
+              <label class="text-xs font-medium mb-1 block">Aktivitas Saat Ini</label>
+              <input type="text" id="feedbackAktivitas" class="w-full p-3 text-sm border rounded-lg focus:ring-2 focus:ring-purple-300" placeholder="Mahasiswa, Pekerja Kantoran, dll">
             </div>
-            
+
             <!-- Skala Feedback -->
             <div>
-              <label class="text-sm font-medium mb-2 block">Skala Feedback (1-5)</label>
-              <div class="feedback-scale mb-2">
-                <div class="scale-dot bg-red-200 text-red-700" data-value="1">1</div>
-                <div class="scale-dot bg-orange-200 text-orange-700" data-value="2">2</div>
-                <div class="scale-dot bg-yellow-200 text-yellow-700" data-value="3">3</div>
-                <div class="scale-dot bg-green-200 text-green-700" data-value="4">4</div>
-                <div class="scale-dot bg-blue-200 text-blue-700" data-value="5">5</div>
+              <label class="text-xs font-medium mb-1 block">Skala Feedback (1-5)</label>
+              <div class="feedback-scale mb-2 flex gap-1 overflow-x-auto pb-1 scrollbar-hide">
+                <div class="scale-dot bg-red-200 text-red-700 px-2 py-1 text-xs rounded-full whitespace-nowrap flex-shrink-0" data-value="1">1</div>
+                <div class="scale-dot bg-orange-200 text-orange-700 px-2 py-1 text-xs rounded-full whitespace-nowrap flex-shrink-0" data-value="2">2</div>
+                <div class="scale-dot bg-yellow-200 text-yellow-700 px-2 py-1 text-xs rounded-full whitespace-nowrap flex-shrink-0" data-value="3">3</div>
+                <div class="scale-dot bg-green-200 text-green-700 px-2 py-1 text-xs rounded-full whitespace-nowrap flex-shrink-0" data-value="4">4</div>
+                <div class="scale-dot bg-blue-200 text-blue-700 px-2 py-1 text-xs rounded-full whitespace-nowrap flex-shrink-0" data-value="5">5</div>
               </div>
               <input type="hidden" id="feedbackSkala" value="3">
-              <div class="text-sm text-slate-500" id="skalaDescription">Netral - Biasa saja</div>
+              <div class="text-xs text-slate-500" id="skalaDescription">Netral - Biasa saja</div>
             </div>
-            
+
             <!-- Penjelasan Feedback -->
             <div>
-              <label class="text-sm font-medium mb-2 block">Penjelasan Feedback</label>
-              <textarea id="feedbackPenjelasan" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-300" rows="3" placeholder="Jelaskan secara singkat mengapa Anda memberikan skala tersebut..."></textarea>
+              <label class="text-xs font-medium mb-1 block">Penjelasan Feedback</label>
+              <textarea id="feedbackPenjelasan" class="w-full p-3 text-sm border rounded-lg focus:ring-2 focus:ring-orange-300" rows="3" placeholder="Jelaskan secara singkat..."></textarea>
             </div>
-            
-            <button id="btnAddFeedback" class="w-full px-4 py-2.5 text-sm rounded-lg grad-accent text-white font-medium">
+
+            <button id="btnAddFeedback" class="w-full px-4 py-2 text-sm rounded-lg grad-accent text-white font-medium mt-2">
               ➕ Tambah Feedback
             </button>
           </div>
         </div>
-        
+
         <!-- Feedback Table -->
         <div>
-          <div class="flex items-center justify-between mb-4">
-            <h4 class="text-lg font-semibold">Tabel Data Feedback</h4>
-            <div class="text-sm text-slate-500">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-base font-semibold">Tabel Data Feedback</h4>
+            <div class="text-xs text-slate-500">
               Total: <span id="totalFeedbackCount">0</span>
             </div>
           </div>
-          
-          <div class="overflow-x-auto max-h-80">
-            <table class="w-full text-sm border-collapse">
+
+          <div class="overflow-x-auto pb-2">
+            <table class="w-full text-xs border-collapse">
               <thead class="bg-slate-50 sticky top-0">
                 <tr>
-                  <th class="px-3 py-2 border text-left">JK</th>
-                  <th class="px-3 py-2 border text-left">Usia</th>
-                  <th class="px-3 py-2 border text-left">Aktivitas</th>
-                  <th class="px-3 py-2 border text-left">Skala</th>
-                  <th class="px-3 py-2 border text-left">Feedback</th>
-                  <th class="px-3 py-2 border text-left">Aksi</th>
+                  <th class="px-2 py-1 border text-left">JK</th>
+                  <th class="px-2 py-1 border text-left">Usia</th>
+                  <th class="px-2 py-1 border text-left">Aktivitas</th>
+                  <th class="px-2 py-1 border text-left">Skala</th>
+                  <th class="px-2 py-1 border text-left">Feedback</th>
+                  <th class="px-2 py-1 border text-left">Aksi</th>
                 </tr>
               </thead>
               <tbody id="feedbackTableBody">
@@ -420,47 +421,46 @@
     </div>
     
     <!-- Dashboard Feedback Section -->
-    <div class="bg-white rounded-2xl p-6 border border-slate-100">
-      <h3 class="text-xl font-semibold mb-6">📊 Dashboard Hasil Feedback</h3>
-      
-      <div class="dashboard-grid grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white rounded-2xl p-4 border border-slate-100">
+      <h3 class="text-lg font-semibold mb-4">📊 Dashboard Hasil Feedback</h3>
+
+      <div class="dashboard-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Chart 1: Distribusi Jenis Kelamin -->
-        <div class="bg-slate-50 p-4 rounded-lg">
-          <h4 class="text-sm font-semibold mb-3">Distribusi Jenis Kelamin</h4>
-          <canvas id="chartFeedbackGender" height="200"></canvas>
+        <div class="bg-slate-50 p-3 rounded-lg">
+          <h4 class="text-xs font-semibold mb-2">Distribusi Jenis Kelamin</h4>
+          <canvas id="chartFeedbackGender" height="120"></canvas>
         </div>
-        
+
         <!-- Chart 2: Distribusi Usia -->
-        <div class="bg-slate-50 p-4 rounded-lg">
-          <h4 class="text-sm font-semibold mb-3">Distribusi Usia</h4>
-          <canvas id="chartFeedbackAge" height="200"></canvas>
+        <div class="bg-slate-50 p-3 rounded-lg">
+          <h4 class="text-xs font-semibold mb-2">Distribusi Usia</h4>
+          <canvas id="chartFeedbackAge" height="120"></canvas>
         </div>
-        
+
         <!-- Chart 3: Distribusi Aktivitas -->
-        <div class="bg-slate-50 p-4 rounded-lg">
-          <h4 class="text-sm font-semibold mb-3">Distribusi Aktivitas</h4>
-          <canvas id="chartFeedbackActivity" height="200"></canvas>
+        <div class="bg-slate-50 p-3 rounded-lg">
+          <h4 class="text-xs font-semibold mb-2">Distribusi Aktivitas</h4>
+          <canvas id="chartFeedbackActivity" height="120"></canvas>
         </div>
-        
+
         <!-- Chart 4: Skala Feedback by Gender -->
-        <div class="bg-slate-50 p-4 rounded-lg">
-          <h4 class="text-sm font-semibold mb-3">Skala Feedback by Jenis Kelamin</h4>
-          <canvas id="chartFeedbackScaleByGender" height="200"></canvas>
+        <div class="bg-slate-50 p-3 rounded-lg">
+          <h4 class="text-xs font-semibold mb-2">Skala by JK</h4>
+          <canvas id="chartFeedbackScaleByGender" height="120"></canvas>
         </div>
-        
+
         <!-- Chart 5: Skala Feedback by Age -->
-        <div class="bg-slate-50 p-4 rounded-lg">
-          <h4 class="text-sm font-semibold mb-3">Skala Feedback by Usia</h4>
-          <canvas id="chartFeedbackScaleByAge" height="200"></canvas>
+        <div class="bg-slate-50 p-3 rounded-lg">
+          <h4 class="text-xs font-semibold mb-2">Skala by Usia</h4>
+          <canvas id="chartFeedbackScaleByAge" height="120"></canvas>
         </div>
-        
+
         <!-- Chart 6: Skala Feedback by Activity -->
-        <div class="bg-slate-50 p-4 rounded-lg">
-          <h4 class="text-sm font-semibold mb-3">Skala Feedback by Aktivitas</h4>
-          <canvas id="chartFeedbackScaleByActivity" height="200"></canvas>
+        <div class="bg-slate-50 p-3 rounded-lg">
+          <h4 class="text-xs font-semibold mb-2">Skala by Aktivitas</h4>
+          <canvas id="chartFeedbackScaleByActivity" height="120"></canvas>
         </div>
       </div>
     </div>
-  </div>
 </body>
 </html>
