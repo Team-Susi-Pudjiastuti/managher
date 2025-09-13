@@ -114,6 +114,9 @@ btnSave.addEventListener('click', function() {
   modalInput.disabled = true;
   
   alert("Data ide bisnis berhasil disimpan! 🎉");
+
+  // Naikkan progress setelah berhasil simpan
+  increaseProgress(20); // misalnya +20% setiap save
 });
 
 btnEditPreview.addEventListener('click', function() {
@@ -179,3 +182,29 @@ setTimeout(() => {
   
   updatePreview();
 }, 500);
+
+let currentProgress = 0;
+
+function animateProgress(target) {
+  const globalBar = document.getElementById('globalBar');
+  const globalPct = document.getElementById('globalPct');
+
+  let start = parseInt(globalPct.textContent.replace('%', '')) || 0;
+  let end = target;
+  let current = start;
+
+  globalBar.style.width = end + '%';
+
+  const step = end > start ? 1 : -1;
+  const interval = setInterval(() => {
+    current += step;
+    globalPct.textContent = current + '%';
+    if (current === end) clearInterval(interval);
+  }, 20);
+}
+
+function increaseProgress(step) {
+  currentProgress = Math.min(100, currentProgress + step);
+  animateProgress(currentProgress);
+}
+

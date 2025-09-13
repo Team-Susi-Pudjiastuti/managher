@@ -120,9 +120,9 @@
           <!-- small global progress -->
           <div class="text-xs text-slate-500 mr-2">Progress</div>
           <div class="w-40 bg-slate-100 rounded-full h-3 overflow-hidden">
-            <div id="globalBar" class="h-3 rounded-full grad-accent" style="width:25%"></div>
+            <div id="globalBar" class="h-3 rounded-full grad-accent transition-all duration-500 ease-out" style="width:0%"></div>
           </div>
-          <div id="globalPct" class="text-sm font-medium ml-3">25%</div>
+          <div id="globalPct" class="text-sm font-medium ml-3">0%</div>
         </div>
       </div>
     </header>
@@ -144,9 +144,9 @@
           <button class="px-4 py-2 text-sm rounded-lg bg-slate-200 hover:bg-slate-300 opacity-50 cursor-not-allowed">
             Prev
           </button>
-          <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90">
+          <a class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90" onclick="goToLevel(2)">
             Next →
-          </button>
+          </a>
         </div>
       </div>
       
