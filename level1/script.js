@@ -1,4 +1,3 @@
-
 // Initialize data
 let currentBusinessIdea = {
   l1_idea: "",
@@ -99,7 +98,7 @@ btnEdit.addEventListener('click', function() {
 btnSave.addEventListener('click', function() {
   // Validate required fields
   if(!currentBusinessIdea.l1_idea || !currentBusinessIdea.l1_target || !currentBusinessIdea.l1_product || !currentBusinessIdea.l1_promo || !currentBusinessIdea.l1_modal) {
-    alert("Mohon lengkapi semua field sebelum menyimpan!");
+    showAlert("Mohon lengkapi semua field sebelum menyimpan!");
     return;
   }
   
@@ -113,7 +112,12 @@ btnSave.addEventListener('click', function() {
   promoSelect.disabled = true;
   modalInput.disabled = true;
   
-  alert("Data ide bisnis berhasil disimpan! 🎉");
+  showAlert('Kerja bagus! Data ide bisnismu telah berhasil disimpan. Validasikan idemu di level selanjutnya!', 'success', {
+              title: 'Data Tersimpan!',
+              subtitle: 'Ide bisnis berhasil disimpan',
+              confirmText: 'Lanjut ke Level 2',
+              onConfirm: () => goToLevel(2)
+          });
 
   // Naikkan progress setelah berhasil simpan
   increaseProgress(20); // misalnya +20% setiap save
