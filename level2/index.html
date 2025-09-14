@@ -12,18 +12,52 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- JS Global-->
   <script src="..\template\script.js" defer></script>
+    <!-- JS Alert-->
+  <script src="alert.js" defer></script>
 </head>
 <body class="min-h-screen">
-  <!-- SIDEBAR -->
-  <aside id="sidebar" class="sidebar fixed top-0 left-0 h-full bg-white border-r shadow-sm p-4 w-64 hidden lg:block">
-    <div class="flex items-center gap-3 mb-4">
-      <div id="brandLogo" class="w-12 h-12 rounded-xl grad-accent grid place-items-center text-lg font-extrabold shadow-md">MH</div>
-      <div class="leading-tight">
-        <div class="font-semibold">ManagHer</div>
-        <div class="text-xs text-slate-500">Solopreneur Journey</div>
-      </div>
+  <!-- Custom Alert Modal -->
+<div id="alertModal" class="fixed inset-0 z-[100] hidden">
+    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div id="alertContent" class="modal-enter bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
+            <!-- Modal Header -->
+            <div id="alertHeader" class="p-6 pb-4">
+                <div class="flex items-center gap-3">
+                    <div id="alertIcon" class="w-12 h-12 rounded-full flex items-center justify-center text-2xl"></div>
+                    <div>
+                        <h3 id="alertTitle" class="text-lg font-semibold text-slate-800"></h3>
+                        <p id="alertSubtitle" class="text-sm text-slate-500 mt-1"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="px-6 pb-6">
+                <p id="alertMessage" class="text-slate-700 leading-relaxed"></p>
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="bg-slate-50 px-6 py-4 flex justify-end gap-3">
+                <button id="alertCancel" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-800 transition-colors hidden">
+                    Batal
+                </button>
+                <button id="alertConfirm" class="px-6 py-2 text-sm font-medium rounded-lg transition-all duration-200">
+                    OK
+                </button>
+            </div>
+        </div>
     </div>
-    <nav class="mt-2">
+</div>
+  <!-- SIDEBAR -->
+<aside id="sidebar" class="sidebar fixed top-16 lg:top-0 left-0 h-[calc(100%-4rem)] lg:h-full bg-white border-r shadow-sm p-4 w-64 transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0">
+  <div class="flex items-center gap-3 mb-4">
+    <div id="brandLogo" class="w-12 h-12 rounded-xl grad-accent grid place-items-center text-lg font-extrabold shadow-md">MH</div>
+    <div class="leading-tight">
+      <div class="font-semibold">ManagHer</div>
+      <div class="text-xs text-slate-500">Solopreneur Journey</div>
+    </div>
+  </div>
+  <nav class="mt-2">
       <ul class="space-y-1 text-sm">
         <li>
           <a href="../Dashboard/index.html" class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100">
@@ -96,19 +130,12 @@
           <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </button>
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl grad-accent grid place-items-center text-white font-bold">MH</div>
-        <div>
-          <div class="text-lg font-semibold">ManagHer</div>
-          <div class="text-xs text-slate-500">Solopreneur Journey</div>
-        </div>
-      </div>
     </div>
-    <div class="text-xs text-slate-500">Dashboard</div>
+    <div class="text-xs text-slate-500">Level 2</div>
   </div>
   
   <!-- MAIN CONTENT -->
-  <div id="main" class="lg:ml-64 pt-16 lg:pt-6 p-6">
+  <div id="main" class="lg:ml-64 pt-16 lg:pt-6 p-6 lg:mt-0 mt-7">
     <!-- Header -->
     <header class="flex items-start gap-6 mb-6">
       <div class="flex-1">
@@ -120,9 +147,9 @@
           <!-- small global progress -->
           <div class="text-xs text-slate-500 mr-2">Progress</div>
           <div class="w-40 bg-slate-100 rounded-full h-3 overflow-hidden">
-            <div id="globalBar" class="h-3 rounded-full grad-accent" style="width:50%"></div>
+            <div id="globalBar" class="h-3 rounded-full grad-accent" style="width:20%"></div>
           </div>
-          <div id="globalPct" class="text-sm font-medium ml-3">50%</div>
+          <div id="globalPct" class="text-sm font-medium ml-3">20%</div>
         </div>
       </div>
     </header>
@@ -137,14 +164,14 @@
         </div>
         <h2 class="text-lg font-bold mt-1">Level 2: Validasi Ide</h2>
         <div class="text-sm text-slate-600 mt-1">🏆 Badge "Researcher"</div>
-        <div class="mt-3 text-sm text-slate-700">🎁 Output: Target Market dan Dashboard Data Demografi Target Market</div>
+        <div class="mt-3 text-sm text-slate-700">Validasi dan iterasi idemu berdasarkan feedback target market!</div>
         
         <!-- Navigation buttons -->
         <div class="flex justify-between mt-6 pt-4 border-t">
-          <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90">
+          <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90" onclick="goToLevel(1)">
             ← Prev
           </button>
-          <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90">
+          <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90" onclick="goToLevel(3)">
             Next →
           </button>
         </div>
@@ -185,66 +212,71 @@
     </div>
     
     <!-- Main Content Area -->
-    <div class="grid lg:grid-cols-2 gap-6 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Form Section -->
-      <div class="bg-white rounded-2xl p-6 border border-slate-100">
-        <div class="flex items-center justify-between mb-6">
-          <h3 class="text-xl font-semibold">📝 Form Validasi Ide</h3>
+      <div class="bg-white rounded-2xl p-4 md:p-6 border border-slate-100">
+        <div class="flex items-center justify-between mb-5">
+          <h3 class="text-lg md:text-xl font-semibold">📝 Form Validasi Ide</h3>
           <div class="flex gap-2">
-            <button id="btnReset" class="px-3 py-1.5 text-sm rounded-lg bg-slate-200 hover:bg-slate-300 action-btn">
-              🔄 Reset
+            <button id="btnReset" class="px-3 py-1.5 text-sm rounded-lg bg-slate-200 hover:bg-slate-300 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Reset
             </button>
-            <button id="btnEdit" class="px-3 py-1.5 text-sm rounded-lg bg-blue-100 hover:bg-blue-200 text-blue-700 action-btn">
-              ✏️ Edit
-            </button>
-            <button id="btnSave" class="px-3 py-1.5 text-sm rounded-lg grad-accent text-white action-btn">
-              💾 Simpan
+            <button id="btnEdit" class="px-3 py-1.5 text-sm rounded-lg bg-blue-100 hover:bg-blue-200 text-blue-700 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                Edit
             </button>
           </div>
         </div>
-        
-        <div class="space-y-5">
+
+        <div class="space-y-4">
           <!-- Jenis Kelamin -->
-          <div class="border-l-4 border-pink-500 pl-4">
+          <div class="border-l-4 border-pink-500 pl-3 md:pl-4">
             <div class="flex items-center gap-2 mb-2">
-              <div class="w-6 h-6 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center text-xs font-bold">1</div>
-              <label class="text-sm font-medium">Jenis Kelamin</label>
+              <div class="w-5 h-5 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center text-[10px] md:text-xs font-bold">1</div>
+              <label class="text-xs md:text-sm font-medium">Jenis Kelamin</label>
             </div>
-            <select id="jk" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-300">
+            <select id="jk" class="w-full p-2 md:p-3 border rounded-lg focus:ring-2 focus:ring-pink-300 text-xs md:text-sm">
               <option value="">Pilih jenis kelamin...</option>
               <option value="Perempuan">Perempuan</option>
               <option value="Laki-laki">Laki-laki</option>
               <option value="Lainnya">Lainnya</option>
             </select>
           </div>
-          
+
           <!-- Usia -->
-          <div class="border-l-4 border-blue-500 pl-4">
+          <div class="border-l-4 border-blue-500 pl-3 md:pl-4">
             <div class="flex items-center gap-2 mb-2">
-              <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold">2</div>
-              <label class="text-sm font-medium">Usia</label>
+              <div class="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-[10px] md:text-xs font-bold">2</div>
+              <label class="text-xs md:text-sm font-medium">Usia</label>
             </div>
-            <input type="number" id="usia" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-300" placeholder="Contoh: 25" min="13" max="80">
+            <input type="number" id="usia" class="w-full p-2 md:p-3 border rounded-lg focus:ring-2 focus:ring-blue-300 text-xs md:text-sm"
+                  placeholder="Contoh: 25" min="13" max="80">
           </div>
-          
+
           <!-- Aktivitas Saat Ini -->
-          <div class="border-l-4 border-green-500 pl-4">
+          <div class="border-l-4 border-green-500 pl-3 md:pl-4">
             <div class="flex items-center gap-2 mb-2">
-              <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs font-bold">3</div>
-              <label class="text-sm font-medium">Aktivitas Saat Ini</label>
+              <div class="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-[10px] md:text-xs font-bold">3</div>
+              <label class="text-xs md:text-sm font-medium">Aktivitas Saat Ini</label>
             </div>
-            <input type="text" id="aktivitas" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-300" placeholder="Contoh: Mahasiswa, Pekerja Kantoran, Ibu Rumah Tangga">
+            <input type="text" id="aktivitas" class="w-full p-2 md:p-3 border rounded-lg focus:ring-2 focus:ring-green-300 text-xs md:text-sm"
+                  placeholder="Contoh: Mahasiswa, Pekerja Kantoran, Ibu Rumah Tangga">
           </div>
-          
+
           <!-- Skala Feedback Ide -->
-          <div class="border-l-4 border-purple-500 pl-4">
+          <div class="border-l-4 border-purple-500 pl-3 md:pl-4">
             <div class="flex items-center gap-2 mb-2">
-              <div class="w-6 h-6 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs font-bold">4</div>
-              <label class="text-sm font-medium">Skala Feedback Ide (1-5)</label>
+              <div class="w-5 h-5 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-[10px] md:text-xs font-bold">4</div>
+              <label class="text-xs md:text-sm font-medium">Skala Feedback Ide (1-5)</label>
             </div>
-            <div class="flex items-center gap-3">
-              <div class="flex-1">
-                <select id="skala" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-300">
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-2">
+              <div class="flex-1 w-full">
+                <select id="skala" class="w-full p-2 md:p-3 border rounded-lg focus:ring-2 focus:ring-purple-300 text-xs md:text-sm">
                   <option value="">Pilih skala...</option>
                   <option value="1">1 - Sangat Tidak Tertarik</option>
                   <option value="2">2 - Tidak Tertarik</option>
@@ -253,42 +285,52 @@
                   <option value="5">5 - Sangat Tertarik</option>
                 </select>
               </div>
-              <div class="text-2xl" id="skalaEmoji">💭</div>
+              <div class="text-2xl md:text-3xl" id="skalaEmoji">💭</div>
             </div>
           </div>
-          
+
           <!-- Penjelasan Feedback -->
-          <div class="border-l-4 border-orange-500 pl-4">
+          <div class="border-l-4 border-orange-500 pl-3 md:pl-4">
             <div class="flex items-center gap-2 mb-2">
-              <div class="w-6 h-6 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs font-bold">5</div>
-              <label class="text-sm font-medium">Penjelasan Feedback</label>
+              <div class="w-5 h-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-[10px] md:text-xs font-bold">5</div>
+              <label class="text-xs md:text-sm font-medium">Penjelasan Feedback</label>
             </div>
-            <textarea id="penjelasan" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-orange-300" rows="3" placeholder="Jelaskan secara singkat mengapa Anda memberikan skala tersebut..."></textarea>
+            <textarea id="penjelasan" class="w-full p-2 md:p-3 border rounded-lg focus:ring-2 focus:ring-orange-300 text-xs md:text-sm"
+                      rows="3" placeholder="Jelaskan secara singkat mengapa Anda memberikan skala tersebut..."></textarea>
           </div>
         </div>
+                <!-- Save Button -->
+        <div class="mt-6 pt-6 border-t border-slate-200 flex justify-center">
+            <button id="btnSave" class="w-60 p-3 rounded-lg text-sm font flex items-center justify-center gap-2 grad-accent text-white hover:opacity-70 cursor-pointer">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                Simpan
+            </button>
+        </div>
       </div>
-      
+
       <!-- Table Section -->
-      <div class="bg-white rounded-2xl p-6 border border-slate-100">
-        <div class="flex items-center justify-between mb-6">
-          <h3 class="text-xl font-semibold">📋 Tabel Data Validasi</h3>
-          <div class="flex gap-2">
-            <button id="btnAddTable" class="px-3 py-1.5 text-sm rounded-lg grad-accent text-white action-btn">
-              ➕ Tambah Data
+      <div class="bg-white rounded-2xl p-4 md:p-6 border border-slate-100">
+        <div class="flex items-center justify-between mb-5">
+          <h3 class="text-lg md:text-xl font-semibold">📋 Tabel Data Validasi</h3>
+          <div class="flex gap-1">
+            <button id="btnAddTable" class="px-2 py-1 text-xs md:text-sm rounded-lg grad-accent text-white action-btn hidden">
+              ➕ Tambah
             </button>
           </div>
         </div>
-        
+
         <div class="overflow-x-auto">
-          <table class="w-full text-sm border-collapse">
+          <table class="w-full text-xs md:text-sm border-collapse">
             <thead>
               <tr class="bg-slate-50">
-                <th class="px-3 py-2 border text-left">Jenis Kelamin</th>
-                <th class="px-3 py-2 border text-left">Usia</th>
-                <th class="px-3 py-2 border text-left">Aktivitas</th>
-                <th class="px-3 py-2 border text-left">Skala</th>
-                <th class="px-3 py-2 border text-left">Feedback</th>
-                <th class="px-3 py-2 border text-left">Aksi</th>
+                <th class="px-2 py-1 md:px-3 md:py-2 border text-left">JK</th>
+                <th class="px-2 py-1 md:px-3 md:py-2 border text-left">Usia</th>
+                <th class="px-2 py-1 md:px-3 md:py-2 border text-left">Aktivitas</th>
+                <th class="px-2 py-1 md:px-3 md:py-2 border text-left">Skala</th>
+                <th class="px-2 py-1 md:px-3 md:py-2 border text-left">Feedback</th>
+                <th class="px-2 py-1 md:px-3 md:py-2 border text-left">Aksi</th>
               </tr>
             </thead>
             <tbody id="validationTableBody">
@@ -296,52 +338,52 @@
             </tbody>
           </table>
         </div>
-        
-        <div class="mt-4 text-sm text-slate-500">
+
+        <div class="mt-4 text-xs md:text-sm text-slate-500">
           Total data validasi: <span id="totalValidationCount">0</span>
         </div>
       </div>
     </div>
-    
+
     <!-- Dashboard Section -->
-    <div class="bg-white rounded-2xl p-6 border border-slate-100">
-      <h3 class="text-xl font-semibold mb-6">📊 Dashboard Hasil Validasi Ide</h3>
-      
-      <div class="dashboard-grid grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white rounded-2xl p-4 md:p-6 border border-slate-100 mt-6">
+      <h3 class="text-lg font-semibold mb-5">📊 Dashboard Hasil Validasi Ide</h3>
+
+      <div class="dashboard-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         <!-- Chart 1: Distribusi Jenis Kelamin -->
-        <div class="bg-slate-50 p-4 rounded-lg">
-          <h4 class="text-sm font-semibold mb-3">Distribusi Jenis Kelamin</h4>
-          <canvas id="chartGender" height="200"></canvas>
+        <div class="bg-slate-50 p-3 md:p-4 rounded-lg">
+          <h4 class="text-xs md:text-sm font-semibold mb-2">Distribusi Jenis Kelamin</h4>
+          <canvas id="chartGender" height="160"></canvas>
         </div>
-        
+
         <!-- Chart 2: Distribusi Usia -->
-        <div class="bg-slate-50 p-4 rounded-lg">
-          <h4 class="text-sm font-semibold mb-3">Distribusi Usia</h4>
-          <canvas id="chartAge" height="200"></canvas>
+        <div class="bg-slate-50 p-3 md:p-4 rounded-lg">
+          <h4 class="text-xs md:text-sm font-semibold mb-2">Distribusi Usia</h4>
+          <canvas id="chartAge" height="160"></canvas>
         </div>
-        
+
         <!-- Chart 3: Distribusi Aktivitas -->
-        <div class="bg-slate-50 p-4 rounded-lg">
-          <h4 class="text-sm font-semibold mb-3">Distribusi Aktivitas</h4>
-          <canvas id="chartActivity" height="200"></canvas>
+        <div class="bg-slate-50 p-3 md:p-4 rounded-lg">
+          <h4 class="text-xs md:text-sm font-semibold mb-2">Distribusi Aktivitas</h4>
+          <canvas id="chartActivity" height="160"></canvas>
         </div>
-        
+
         <!-- Chart 4: Skala Feedback by Gender -->
-        <div class="bg-slate-50 p-4 rounded-lg">
-          <h4 class="text-sm font-semibold mb-3">Skala Feedback by Jenis Kelamin</h4>
-          <canvas id="chartScaleByGender" height="200"></canvas>
+        <div class="bg-slate-50 p-3 md:p-4 rounded-lg">
+          <h4 class="text-xs md:text-sm font-semibold mb-2">Skala by JK</h4>
+          <canvas id="chartScaleByGender" height="160"></canvas>
         </div>
-        
+
         <!-- Chart 5: Skala Feedback by Age -->
-        <div class="bg-slate-50 p-4 rounded-lg">
-          <h4 class="text-sm font-semibold mb-3">Skala Feedback by Usia</h4>
-          <canvas id="chartScaleByAge" height="200"></canvas>
+        <div class="bg-slate-50 p-3 md:p-4 rounded-lg">
+          <h4 class="text-xs md:text-sm font-semibold mb-2">Skala by Usia</h4>
+          <canvas id="chartScaleByAge" height="160"></canvas>
         </div>
-        
+
         <!-- Chart 6: Skala Feedback by Activity -->
-        <div class="bg-slate-50 p-4 rounded-lg">
-          <h4 class="text-sm font-semibold mb-3">Skala Feedback by Aktivitas</h4>
-          <canvas id="chartScaleByActivity" height="200"></canvas>
+        <div class="bg-slate-50 p-3 md:p-4 rounded-lg">
+          <h4 class="text-xs md:text-sm font-semibold mb-2">Skala by Aktivitas</h4>
+          <canvas id="chartScaleByActivity" height="160"></canvas>
         </div>
       </div>
     </div>
