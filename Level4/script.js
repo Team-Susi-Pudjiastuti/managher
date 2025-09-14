@@ -401,6 +401,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Set initial progress
   const globalBar = document.getElementById('globalBar');
   const globalPct = document.getElementById('globalPct');
-  globalBar.style.width = '100%';
-  globalPct.textContent = '100%';
+  globalBar.style.width = '60%';
+  globalPct.textContent = '60%';
 });
