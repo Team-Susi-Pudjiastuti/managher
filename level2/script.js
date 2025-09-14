@@ -292,19 +292,32 @@ function renderCharts() {
 }
 
 // Button event listeners
-btnReset.addEventListener('click', function() {
-  if(confirm("Apakah Anda yakin ingin mereset form ini?")) {
-    jkSelect.selectedIndex = 0;
-    usiaInput.value = "";
-    aktivitasInput.value = "";
-    skalaSelect.selectedIndex = 0;
-    penjelasanTextarea.value = "";
-    skalaEmoji.textContent = '💭';
-  }
+btnReset.addEventListener('click', function () {
+  // pakai showAlert versi custom
+  showAlert("Apakah Anda yakin ingin mereset semua data?", "warning", {
+    showCancel: true,
+    confirmText: "Ya, Reset",
+    cancelText: "Batal",
+    onConfirm: () => {
+      // reset form kalau user pilih OK
+      jkSelect.selectedIndex = 0;
+      usiaInput.value = "";
+      aktivitasInput.value = "";
+      skalaSelect.selectedIndex = 0;
+      penjelasanTextarea.value = "";
+      skalaEmoji.textContent = '💭';
+
+      // tampilkan info sukses
+      showAlert("Form telah direset!", "success", {
+        confirmText: "OK"
+      });
+    }
+  });
 });
 
+
 btnEdit.addEventListener('click', function() {
-  alert("Mode edit diaktifkan. Anda dapat mengubah data pada form.");
+  showAlert("Mode edit diaktifkan. Anda dapat mengubah data pada form.");
 });
 
 btnSave.addEventListener('click', function() {
@@ -383,15 +396,9 @@ validationTableBody.addEventListener('click', function(e) {
 });
 
 // Mobile menu toggle
-mobileMenuBtn.addEventListener('click', function() {
-  const sidebar = document.getElementById('sidebar');
-  if(sidebar.classList.contains('hidden')) {
-    sidebar.classList.remove('hidden');
-    sidebar.classList.add('fixed', 'top-16', 'left-0', 'right-0', 'bottom-0', 'z-40', 'shadow-lg');
-  } else {
-    sidebar.classList.add('hidden');
-    sidebar.classList.remove('fixed', 'top-16', 'left-0', 'right-0', 'bottom-0', 'z-40', 'shadow-lg');
-  }
+mobileMenuBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('-translate-x-full'); // sembunyi
+  sidebar.classList.toggle('translate-x-0');     // tampil
 });
 
 // Initialize
@@ -402,6 +409,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Set initial progress
   const globalBar = document.getElementById('globalBar');
   const globalPct = document.getElementById('globalPct');
-  globalBar.style.width = '50%';
-  globalPct.textContent = '50%';
+  globalBar.style.width = '20%';
+  globalPct.textContent = '20%';
 });
