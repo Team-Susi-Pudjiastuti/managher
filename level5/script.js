@@ -89,7 +89,7 @@ btnReset.addEventListener('click', function() {
     notes.value = "";
     
     updatePreview();
-    alert("Form telah direset!");
+    showAlert("Form telah direset!");
   }
 });
 
@@ -145,7 +145,14 @@ btnSave.addEventListener('click', function() {
   costStructure.disabled = true;
   notes.disabled = true;
   
-  alert("Business Model Canvas berhasil disimpan! 🎉");
+    showAlert('Kerja bagus! Business Model Canvas mu telah berhasil disimpan. Cek badges yang telah kamu dapatkan!', 'success', {
+              title: 'Data Tersimpan!',
+              subtitle: 'BMC berhasil disimpan',
+              confirmText: 'Cek Badges',
+              onConfirm: () => {
+              window.location.href = "../badges/index.html"; // Redirect instan ke halaman badges
+            }
+          });
 });
 
 btnDownloadPDF.addEventListener('click', function() {
