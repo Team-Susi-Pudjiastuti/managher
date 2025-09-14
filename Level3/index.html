@@ -1,19 +1,21 @@
-<!doctype html>
 <html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ManagHer — Dashboard</title>
-  <!--CSS-->
+  <!--CSS Global-->
   <link rel="stylesheet" href="..\template\style.css" class="css">
+  <!--CSS-->
+  <link rel="stylesheet" href="style.css" class="css">
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
   <!-- Script js global -->
   <script src="..\template\script.js" defer></script>
 <!-- Script js  -->
   <script src="script.js" defer></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
 
 </head>
@@ -113,7 +115,7 @@
   
   <!-- MAIN CONTENT -->
   <!-- MAIN CONTENT -->
-  <div id="main" class="lg:ml-64 pt-16 lg:pt-6 p-6">
+  <div id="main" class="lg:ml-64 pt-16 lg:pt-6 p-6 lg:mt-0 mt-10">
     <!-- Header -->
     <header class="flex items-start gap-6 mb-6">
       <div class="flex-1">
@@ -146,10 +148,10 @@
         
         <!-- Navigation buttons -->
         <div class="flex justify-between mt-6 pt-4 border-t">
-          <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90">
+          <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90" onclick="goToLevel(2)">
             ← Prev
           </button>
-          <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90">
+          <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90" onclick="goToLevel(4)">
             Next →
           </button>
         </div>
@@ -324,7 +326,7 @@
     <div class="bg-white rounded-2xl p-6 border border-slate-100 mb-6">
       <h3 class="text-xl font-semibold mb-6">📋 Feedback Prototype</h3>
       
-      <div class="grid lg:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 gap-4">
         <!-- Feedback Form -->
         <div>
           <div class="flex items-center justify-between mb-4">
@@ -423,7 +425,7 @@
     <div class="bg-white rounded-2xl p-6 border border-slate-100">
       <h3 class="text-xl font-semibold mb-6">📊 Dashboard Hasil Feedback</h3>
       
-      <div class="dashboard-grid grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="dashboard-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Chart 1: Distribusi Jenis Kelamin -->
         <div class="bg-slate-50 p-4 rounded-lg">
           <h4 class="text-sm font-semibold mb-3">Distribusi Jenis Kelamin</h4>
