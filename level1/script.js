@@ -1,4 +1,3 @@
-
 // Initialize data
 let currentBusinessIdea = {
   l1_idea: "",
@@ -64,26 +63,38 @@ modalInput.addEventListener('input', function() {
 });
 
 // Button event listeners
-btnReset.addEventListener('click', function() {
-  if(confirm("Apakah Anda yakin ingin mereset semua data?")) {
-    ideaSelect.selectedIndex = 0;
-    targetSelect.selectedIndex = 0;
-    productInput.value = "";
-    promoSelect.selectedIndex = 0;
-    modalInput.value = "";
-    
-    currentBusinessIdea = {
-      l1_idea: "",
-      l1_target: "",
-      l1_product: "",
-      l1_promo: "",
-      l1_modal: ""
-    };
-    
-    updatePreview();
-    alert("Form telah direset!");
-  }
+btnReset.addEventListener('click', function () {
+  // pakai showAlert versi custom
+  showAlert("Apakah Anda yakin ingin mereset semua data?", "warning", {
+    showCancel: true,
+    confirmText: "Ya, Reset",
+    cancelText: "Batal",
+    onConfirm: () => {
+      // reset form kalau user pilih OK
+      ideaSelect.selectedIndex = 0;
+      targetSelect.selectedIndex = 0;
+      productInput.value = "";
+      promoSelect.selectedIndex = 0;
+      modalInput.value = "";
+
+      currentBusinessIdea = {
+        l1_idea: "",
+        l1_target: "",
+        l1_product: "",
+        l1_promo: "",
+        l1_modal: ""
+      };
+
+      updatePreview();
+
+      // tampilkan info sukses
+      showAlert("Form telah direset!", "success", {
+        confirmText: "OK"
+      });
+    }
+  });
 });
+
 
 btnEdit.addEventListener('click', function() {
   // Enable all form fields for editing
@@ -93,13 +104,13 @@ btnEdit.addEventListener('click', function() {
   promoSelect.disabled = false;
   modalInput.disabled = false;
   
-  alert("Mode edit diaktifkan. Anda dapat mengubah data dan kemudian menyimpannya.");
+  showAlert("Mode edit diaktifkan. Anda dapat mengubah data pada form.");
 });
 
 btnSave.addEventListener('click', function() {
   // Validate required fields
   if(!currentBusinessIdea.l1_idea || !currentBusinessIdea.l1_target || !currentBusinessIdea.l1_product || !currentBusinessIdea.l1_promo || !currentBusinessIdea.l1_modal) {
-    alert("Mohon lengkapi semua field sebelum menyimpan!");
+    showAlert("Mohon lengkapi semua field sebelum menyimpan!");
     return;
   }
   
@@ -113,7 +124,15 @@ btnSave.addEventListener('click', function() {
   promoSelect.disabled = true;
   modalInput.disabled = true;
   
-  alert("Data ide bisnis berhasil disimpan! 🎉");
+  showAlert('Kerja bagus! Data ide bisnismu telah berhasil disimpan. Validasikan idemu di level selanjutnya!', 'success', {
+              title: 'Data Tersimpan!',
+              subtitle: 'Ide bisnis berhasil disimpan',
+              confirmText: 'Lanjut ke Level 2',
+              onConfirm: () => goToLevel(2)
+          });
+
+  // Naikkan progress setelah berhasil simpan
+  increaseProgress(20); // misalnya +20% setiap save
 });
 
 btnEditPreview.addEventListener('click', function() {
@@ -179,3 +198,29 @@ setTimeout(() => {
   
   updatePreview();
 }, 500);
+
+let currentProgress = 0;
+
+function animateProgress(target) {
+  const globalBar = document.getElementById('globalBar');
+  const globalPct = document.getElementById('globalPct');
+
+  let start = parseInt(globalPct.textContent.replace('%', '')) || 0;
+  let end = target;
+  let current = start;
+
+  globalBar.style.width = end + '%';
+
+  const step = end > start ? 1 : -1;
+  const interval = setInterval(() => {
+    current += step;
+    globalPct.textContent = current + '%';
+    if (current === end) clearInterval(interval);
+  }, 20);
+}
+
+function increaseProgress(step) {
+  currentProgress = Math.min(100, currentProgress + step);
+  animateProgress(currentProgress);
+}
+
