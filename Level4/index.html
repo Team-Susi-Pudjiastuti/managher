@@ -4,19 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ManagHer — Dashboard</title>
-  <!--CSS-->  
-  <link rel="stylesheet" href="..\template\style.css" class="css">   
-  <!--CSS-->  
-  <link rel="stylesheet" href="style.css" class="css"> 
-  <!-- Tailwind -->  
-  <script src="https://cdn.tailwindcss.com"></script>  
-  <!-- Chart.js -->  
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>   
-  <!-- JS Global-->  
-  <script src="..\template\script.js" defer></script> 
-  <!-- Script js  -->  
-  <script src="script.js" defer></script>
-  
+<!-- Tailwind -->  
+<script src="https://cdn.tailwindcss.com"></script>  
+<!--CSS Global-->  
+<link rel="stylesheet" href="..\template\style.css" class="css">  
+<!--CSS-->  
+<link rel="stylesheet" href="style.css" class="css">  
+<!-- Script js Global -->   
+<script src="..\template\script.js" defer></script>   
+<!-- Script js  -->
+<script src="script.js" defer></script>
+
+
 
 </head>
 <body class="min-h-screen">
@@ -46,7 +45,7 @@
               </span>
               <svg id="homeArrow" class="w-4 h-4 transform transition-transform" viewBox="0 0 20 20"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
             </button>
-            <ul id="homepageSubmenu" class="ml-6 mt-2 space-y-1 text-xs hidden">
+            <ul id="homepageSubmenu" class="ml-6 mt-2 space-y-1 text-xs">
               <li>
                 <button class="w-full text-left p-2 rounded-md hover:bg-slate-100" onclick="goToLevel(1); toggleMobileSidebar(false)">
                   Level 1: Ide Bisnis
@@ -113,11 +112,9 @@
     <div class="text-xs text-slate-500">Dashboard</div>
   </div>
   
-<<<<<<< HEAD
+
    <!-- MAIN CONTENT -->
-=======
-  <!-- MAIN CONTENT -->
->>>>>>> deafcf9a92142fbdc4872e7b57e5ae3f77bd24ed
+
   <div id="main" class="lg:ml-64 pt-16 lg:pt-6 p-6">
     <!-- Header -->
     <header class="flex items-start gap-6 mb-6">
@@ -154,8 +151,8 @@
           <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90">
             ← Prev
           </button>
-          <button class="px-4 py-2 text-sm rounded-lg bg-slate-200 hover:bg-slate-300 opacity-50 cursor-not-allowed">
-            Next
+           <button class="px-4 py-2 text-sm rounded-lg grad-accent hover:opacity-90">
+            Next →
           </button>
         </div>
       </div>
@@ -473,5 +470,7 @@
       </div>
     </div>
   </div>
-</body>
+
+
+  </body>
 </html>
