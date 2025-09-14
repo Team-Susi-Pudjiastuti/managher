@@ -63,26 +63,38 @@ modalInput.addEventListener('input', function() {
 });
 
 // Button event listeners
-btnReset.addEventListener('click', function() {
-  if(confirm("Apakah Anda yakin ingin mereset semua data?")) {
-    ideaSelect.selectedIndex = 0;
-    targetSelect.selectedIndex = 0;
-    productInput.value = "";
-    promoSelect.selectedIndex = 0;
-    modalInput.value = "";
-    
-    currentBusinessIdea = {
-      l1_idea: "",
-      l1_target: "",
-      l1_product: "",
-      l1_promo: "",
-      l1_modal: ""
-    };
-    
-    updatePreview();
-    alert("Form telah direset!");
-  }
+btnReset.addEventListener('click', function () {
+  // pakai showAlert versi custom
+  showAlert("Apakah Anda yakin ingin mereset semua data?", "warning", {
+    showCancel: true,
+    confirmText: "Ya, Reset",
+    cancelText: "Batal",
+    onConfirm: () => {
+      // reset form kalau user pilih OK
+      ideaSelect.selectedIndex = 0;
+      targetSelect.selectedIndex = 0;
+      productInput.value = "";
+      promoSelect.selectedIndex = 0;
+      modalInput.value = "";
+
+      currentBusinessIdea = {
+        l1_idea: "",
+        l1_target: "",
+        l1_product: "",
+        l1_promo: "",
+        l1_modal: ""
+      };
+
+      updatePreview();
+
+      // tampilkan info sukses
+      showAlert("Form telah direset!", "success", {
+        confirmText: "OK"
+      });
+    }
+  });
 });
+
 
 btnEdit.addEventListener('click', function() {
   // Enable all form fields for editing
@@ -92,7 +104,7 @@ btnEdit.addEventListener('click', function() {
   promoSelect.disabled = false;
   modalInput.disabled = false;
   
-  alert("Mode edit diaktifkan. Anda dapat mengubah data dan kemudian menyimpannya.");
+  showAlert("Mode edit diaktifkan. Anda dapat mengubah data pada form.");
 });
 
 btnSave.addEventListener('click', function() {
